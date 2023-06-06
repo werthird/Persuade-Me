@@ -59,9 +59,9 @@ const Profile = () => {
           isLoggedInUser={!profileId && true}
         />
       )}
-        <ul>
+        <div>
           W/L
-        </ul>
+          </div>
       
         
       </div>
