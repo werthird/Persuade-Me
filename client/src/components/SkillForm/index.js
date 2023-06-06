@@ -15,6 +15,7 @@ const SkillForm = ({ profileId }) => {
     event.preventDefault();
 
     try {
+      // eslint-disable-next-line no-unused-vars
       const data = await addSkill({
         variables: { profileId, skill },
       });
