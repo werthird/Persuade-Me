@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <main>
-      <div className="flex-row justify-center">
+      <div className="flex-row justify-center text-center">
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>
@@ -38,12 +38,12 @@ const Home = () => {
             //   title="Here's the current roster of friends..."
             // />
             <>
-              <input
+              <input className='text-center border-2 mr-2'
                 placeholder="Message..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button onClick={sendMessage}>Send Message</button>
+              <button className='bg-gradient-to-r from-cyan-300 text- to-zinc-600 text-white px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse' onClick={sendMessage}>Send Message</button>
               <div>
                 {messagesReceived}
               </div>
