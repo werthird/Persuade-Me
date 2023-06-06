@@ -43,10 +43,14 @@ const Profile = () => {
   }
 
   return (
-    <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        skills...
+    
+
+      <div  id="pbackground" className="my-4 p-4" style={{ border: '5px solid  #9caeb1 ' }}>
+        <SkillForm profileId={profile._id} />
+ 
+        <div>
+   <h2 id="UserId" className="card-header">
+        {profileId ? `${profile.name}'s` : 'Your'} User ID
       </h2>
 
       {profile.skills?.length > 0 && (
@@ -55,9 +59,11 @@ const Profile = () => {
           isLoggedInUser={!profileId && true}
         />
       )}
-
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <SkillForm profileId={profile._id} />
+        <ul>
+          W/L
+        </ul>
+      
+        
       </div>
     </div>
   );
