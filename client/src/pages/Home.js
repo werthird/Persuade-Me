@@ -27,8 +27,8 @@ const Home = () => {
   }, [socket]);
 
   return (
-    <main>
-      <div className="flex-row justify-center">
+    <main className='flex-col flex items-center'>
+      <div className="flex-row flex">
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>
@@ -39,15 +39,13 @@ const Home = () => {
             
          
             <>
-              <input
-                placeholder="Message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <button onClick={sendMessage}>Send Message</button>
-              <div>
-                {messagesReceived}
-              </div>
+              {/* <ProfileList
+                profiles={profiles}
+                title="Here's the current roster of friends..."
+              /> */}
+              {messagesReceived.map((message, index) => (
+                <p key={index}>{message}</p>
+              ))}
             </>
           )}
         </div>
