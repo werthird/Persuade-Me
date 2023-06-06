@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,6 +7,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Import Socket
+import io from 'socket.io-client';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -36,9 +38,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const socket = io('http://localhost:3001'); // Replace with your server URL
+
+
 function App() {
+
+
+  useEffect(() => {
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={client} context={socket}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
