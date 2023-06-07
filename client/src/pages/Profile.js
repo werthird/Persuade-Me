@@ -43,21 +43,27 @@ const Profile = () => {
   }
 
   return (
-    <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        skills...
-      </h2>
+    
 
+      <div  id="pbackground" className="my-4 p-4" style={{ border: '5px solid  #9caeb1 ' }}>
+        <SkillForm profileId={profile._id} />
+ 
+        <div>
+   <div id="UserId" className="card-header">
+        {profileId ? `${profile.name}'s` : 'Your'} User ID
+      </div>
+{/* 
       {profile.skills?.length > 0 && (
         <SkillsList
           skills={profile.skills}
           isLoggedInUser={!profileId && true}
         />
-      )}
-
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <SkillForm profileId={profile._id} />
+      )} */}
+        <div>
+          W/L
+          </div>
+      
+        
       </div>
     </div>
   );
