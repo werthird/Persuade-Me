@@ -7,7 +7,7 @@ const ProfileList = ({ profiles, title }) => {
   }
 
   return (
-    <div>
+    <div id="Skill">
       <h3 className="text-primary">{title}</h3>
       <div className="flex-row justify-space-between my-4">
         {profiles &&
@@ -24,7 +24,7 @@ const ProfileList = ({ profiles, title }) => {
                 </h4>
 
                 <Link
-                  className="btn btn-block btn-squared btn-light text-dark"
+                 id="pbutton" className ="btn btn-block btn-squared btn-light text-dark"
                   to={`/profiles/${profile._id}`}
                 >
                   View and endorse their skills.
