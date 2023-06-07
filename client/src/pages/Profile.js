@@ -49,16 +49,16 @@ const Profile = () => {
         <SkillForm profileId={profile._id} />
  
         <div>
-   <h2 id="UserId" className="card-header">
+   <div id="UserId" className="card-header">
         {profileId ? `${profile.name}'s` : 'Your'} User ID
-      </h2>
-
+      </div>
+{/* 
       {profile.skills?.length > 0 && (
         <SkillsList
           skills={profile.skills}
           isLoggedInUser={!profileId && true}
         />
-      )}
+      )} */}
         <div>
           W/L
           </div>
