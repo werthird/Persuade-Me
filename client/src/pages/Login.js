@@ -44,7 +44,7 @@ const Login = (props) => {
     <main className="flex-col flex items-center mb-4 col-lg-10 mx-auto">
       <div className="col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2 text-center font-poppins">Login:</h4>
+          <h4 className="card-header bg-dark text-light p-2 text-center font-poppins font-bold">Login:</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -84,7 +84,7 @@ const Login = (props) => {
                 />
                 </label>
                 <button
-                  className=" mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-12 hover:animate-pulse"
+                  className=" mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-14 hover:animate-pulse"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
