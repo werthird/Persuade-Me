@@ -56,7 +56,7 @@ function App() {
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
-          <div className="container">
+          <div className="flex flex-col justify-center">
             <Routes>
               <Route 
                 path="/" 
