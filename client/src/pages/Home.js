@@ -34,10 +34,18 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <>
-              {/* <ProfileList
-                profiles={profiles}
-                title="Here's the current roster of friends..."
-              /> */}
+            <div>Topic:</div>
+            <input placeholder="Your topic"
+                  name="topic"
+                  type="topic"
+                />
+                <button
+                  className=" mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-12 hover:animate-pulse"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </button>
               {messagesReceived.map((message, index) => (
                 <p key={index}>{message}</p>
               ))}
