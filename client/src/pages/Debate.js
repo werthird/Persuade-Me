@@ -49,13 +49,13 @@ const Debate = () => {
     return (
 
         <div id="main" className='border-2 border-black flex'>
-            <div className='viewers w-1/5 border-2 border-black'>Viewers</div>
+            <div className='viewers w-1/5 border-2 border-black text-center pt-4'>Viewers:</div>
             <div className='w-4/5'>
                 <div className=''>
                     <div className='flex justify-center'>
-                        <button className='border-2 border-black'>Start</button>
-                        <button className='border-2 border-black mx-5'>Pause</button>
-                        <button className='border-2 border-black'>Stop</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'>Start</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'>Pause</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'>Stop</button>
                     </div>
                     <div className="header border-2 border-black flex justify-evenly items-center">
                         <div className="user border-2 border-black">User 1</div>
@@ -68,9 +68,11 @@ const Debate = () => {
                 </div>
 
                 <div className="content border-2 border-black h-96">
-                    <h2>Hello</h2>
+                    <h2 className='pl-4'>Hello</h2>
 
-                    <div className="messages">
+                    <div className="messages w-full px-5 flex flex-col justify-between">
+                        <div class="flex flex-col mt-5">
+                            <div class="flex justify-end mb-4">
                         {messageList.map((messageContent) => {
                             return (
                                 <div>
@@ -82,10 +84,11 @@ const Debate = () => {
                         })}
                     </div>
                     <div>
-                    
-                        <div>
-                        <input type='text' placeholder='Message...' onChange={(e) => setCurrentMessage(e.target.value)} />
-                        <button onClick={sendMessage}>Send Message</button>
+                    </div>
+                    </div>
+                        <div className='py-5 flex mt-52'>
+                        <input className='w-full bg-gray-300 py-5 px-3 rounded-xl' type='text' placeholder='Message...' onChange={(e) => setCurrentMessage(e.target.value)} />
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse' onClick={sendMessage}>Send Message</button>
                         </div>
                     {/* {username === admin || username === debatorOne || username === debatorTwo ? (    
                     ) : (
