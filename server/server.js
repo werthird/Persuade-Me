@@ -33,11 +33,17 @@ const PORT = process.env.PORT || 3001;
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`);
 
+  // JOIN LOBBY
+  socket.on('join_lobby', (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined lobby: ${data}`);
+  });
+
   // Listen to any client requests
-  socket.on('message_from_client', (data) => {
+  socket.on('client_message', (data) => {
     console.log('Received message:', data);
 
-    socket.emit('message_from_server', data);
+    socket.emit('server_message', data);
   });
 });
 
