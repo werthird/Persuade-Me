@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Debate from './pages/Debate';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -58,25 +59,29 @@ function App() {
           <Header />
           <div className="flex flex-col justify-center">
             <Routes>
-              <Route 
-                path="/" 
+              <Route
+                path="/home"
                 element={<Home />}
               />
-              <Route 
-                path="/login" 
+              <Route
+                path="/login"
                 element={<Login />}
               />
-              <Route 
-                path="/signup" 
+              <Route
+                path="/signup"
                 element={<Signup />}
               />
-              <Route 
-                path="/me" 
+              <Route
+                path="/me"
                 element={<Profile />}
               />
-              <Route 
+              <Route
                 path="/profiles/:profileId"
                 element={<Profile />}
+              />
+              <Route
+                path="/lobby/:lobbyId"
+                element={<Debate />}
               />
             </Routes>
           </div>

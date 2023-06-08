@@ -43,3 +43,11 @@ export const REMOVE_SKILL = gql`
     }
   }
 `;
+
+export const ADD_LOBBY = gql`
+  mutation AddLobby($host: ID!, $topic: String!) {
+    addLobby(host: $host, topic: $topic) {
+      token
+    }
+  }
+`;
