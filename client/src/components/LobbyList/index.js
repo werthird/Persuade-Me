@@ -7,7 +7,8 @@ import { QUERY_LOBBIES } from '../../utils/queries';
 
 
 const LobbyList = () => {
-    var { error, loading, data } = useQuery(QUERY_LOBBIES)
+
+    let { error, loading, data } = useQuery(QUERY_LOBBIES)
     console.log(data)
     if (!data) {
         return <h3>No active debates.</h3>;
@@ -21,13 +22,18 @@ const LobbyList = () => {
                 {console.log(data.lobbies)}
                 {data.lobbies &&
                     data.lobbies.map((lobby) => {
+                        const data = { lobby }
                         return <div className="card mb-3" key={lobby._id}>
                             <Link
                                 className=""
-                                to={`/lobby/${lobby._id}`}>
-                            <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">{lobby.topic}</h4>
-                            <h4>{lobby.host}</h4>
-                            <h4>{lobby.createdAt}</h4>
+                                to={{
+                                    pathname: `/lobby/${lobby._id}`,
+                                }}
+                                state= {data}
+                            >
+                                <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">{lobby.topic}</h4>
+                                <h4>{lobby.host}</h4>
+                                <h4>{lobby.createdAt}</h4>
                             </Link>
                         </div>
                     })

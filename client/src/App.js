@@ -60,7 +60,7 @@ function App() {
           <div className="flex flex-col justify-center">
             <Routes>
               <Route 
-                path="/home"
+                path="/"
                 element={<Home />}
               />
               <Route
