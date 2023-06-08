@@ -10,26 +10,22 @@ import Footer from '../components/Footer';
 
 
 
-const socket = io('http://localhost:3001'); // Replace with your server URL
-
-
 
 const Debate = () => {
+    const socket = io('http://localhost:3001'); // Replace with your server URL
 
     const { lobbyId } = useParams();
 
-    const [lobby, setLobby ] = useState('');
+
     const [message, setMessage ] = useState('');
     const [messageList, setMessageList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState('');
 
-    
-
     const joinLobby = () => {
-        if (lobby !== '') {
-          socket.emit('join_lobby', lobby);
-        };
-    };
+        socket.emit('join_lobby', `${lobbyId}`)
+        console.log(`user joined ${lobbyId}`)
+    }
+    joinLobby();
 
     const sendMessage = () => {
         socket.emit('client_message', message);
@@ -47,7 +43,6 @@ const Debate = () => {
     }, [socket]);
 
     return (
-
         <div id="main" className='border-2 border-black flex'>
             <div className='viewers w-1/5 border-2 border-black'>Viewers</div>
             <div className='w-4/5'>
@@ -63,7 +58,7 @@ const Debate = () => {
                             <p className=''>Timer</p>
                             <span>00:00:00</span>
                         </div>
-                        <div class="user border-2 border-black">User 2</div>
+                        <div className="user border-2 border-black">User 2</div>
                     </div>
                 </div>
 

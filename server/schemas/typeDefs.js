@@ -15,6 +15,9 @@ const typeDefs = gql`
     host: ID
     status: String
     topic: String
+    teamA: [String]
+    teamB:[String]
+    admin:[String]
   }
 
   type Auth {
