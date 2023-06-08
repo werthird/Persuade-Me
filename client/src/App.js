@@ -60,7 +60,7 @@ function App() {
           <div className="flex flex-col justify-center">
             <Routes>
               <Route 
-                path="/"
+                path="/home"
                 element={<Home />}
               />
               <Route
@@ -80,7 +80,7 @@ function App() {
                 element={<Profile />}
               />
               <Route 
-                path="/lobby"
+                path="/lobby/:lobbyId"
                 element={<Debate />}
               />
             </Routes>

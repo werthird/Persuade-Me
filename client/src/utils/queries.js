@@ -38,6 +38,9 @@ export const QUERY_LOBBIES = gql`
       host
       status
       topic
+      teamA
+      teamB
+      admin
     }
   }
 `;

@@ -17,7 +17,16 @@ const lobbySchema = new Schema({
     topic: {
         type: String,
         required: 'Debate topic must be decided before lobby creation.'
-    }
+    },
+    teamA:[{
+        type: String
+    }],
+    teamB:[{
+        type: String
+    }],
+    admin:[{
+        type: String
+    }]
 });
 
 lobbySchema.pre('save', function getDate(next) {
