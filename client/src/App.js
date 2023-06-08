@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Debate from './pages/Debate';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -59,7 +60,7 @@ function App() {
           <div className="flex flex-col justify-center">
             <Routes>
               <Route 
-                path="/" 
+                path="/"
                 element={<Home />}
               />
               <Route 
@@ -77,6 +78,10 @@ function App() {
               <Route 
                 path="/profiles/:profileId"
                 element={<Profile />}
+              />
+              <Route 
+                path="/lobby"
+                element={<Debate />}
               />
             </Routes>
           </div>
