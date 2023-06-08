@@ -23,9 +23,6 @@ const io = new Server(httpServer, {
 
 const PORT = process.env.PORT || 3001;
 
-
-
-
 // ======================================================
 // SOCKET.IO 
 
@@ -41,9 +38,10 @@ io.on('connection', (socket) => {
 
   // Listen to any client requests
   socket.on('client_message', (data) => {
-    console.log('Received message:', data);
+    console.log('Received message:', data.message);
 
-    socket.emit('server_message', data);
+    socket.to(data.lobby).emit('server_message', data.message);
+    console.log('Sent message: ', data.message, `to: ${data.lobby}`)
   });
 });
 

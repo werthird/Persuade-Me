@@ -13,7 +13,7 @@ import Footer from '../components/Footer';
 
 
 const Debate = () => {
-    const lobby = useLocation().state;
+    const lobby = useLocation().state.lobby;
     console.log(lobby);
 
     const socket = io('http://localhost:3001'); // Replace with your server URL
@@ -21,7 +21,7 @@ const Debate = () => {
     const { lobbyId } = useParams();
 
 
-    const [message, setMessage ] = useState('');
+    const [message, setMessage] = useState('');
     const [messageList, setMessageList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState('');
 
@@ -32,18 +32,21 @@ const Debate = () => {
     joinLobby();
 
     const sendMessage = () => {
-        socket.emit('client_message', currentMessage);
+        const data = { message: currentMessage, lobby: lobbyId }
+        socket.emit('client_message', data);
+        setMessageList((list) => [...list, data.message])
         setMessage('');
     };
 
     useEffect(() => {
         const receiveMessage = (data) => {
             setMessageList((list) => [...list, data]);
-          };
-          socket.on('server_message', receiveMessage);
-          return () => {
+        };
+        socket.on('server_message', receiveMessage);
+        console.log('this was received')
+        return () => {
             socket.off('server_message', receiveMessage);
-          };
+        };
     }, [socket]);
 
     return (
@@ -80,29 +83,29 @@ const Debate = () => {
                                     )
                                 })}
                             </div>
-                        <div>
-                    </div>
-                    </div>
-                        <div className='py-5 flex mt-52'>
-                        <input 
-                            className='w-full bg-gray-300 py-5 px-3 rounded-xl' 
-                            type='text' 
-                            placeholder='Message...' 
-                            onChange={(e) => setCurrentMessage(e.target.value)} 
-                        />
-                        <button 
-                            className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse' 
-                            onClick={sendMessage}
-                        >Send Message</button>
+                            <div>
+                            </div>
                         </div>
-                    {/* {username === admin || username === debatorOne || username === debatorTwo ? (    
+                        <div className='py-5 flex mt-52'>
+                            <input
+                                className='w-full bg-gray-300 py-5 px-3 rounded-xl'
+                                type='text'
+                                placeholder='Message...'
+                                onChange={(e) => setCurrentMessage(e.target.value)}
+                            />
+                            <button
+                                className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
+                                onClick={sendMessage}
+                            >Send Message</button>
+                        </div>
+                        {/* {username === admin || username === debatorOne || username === debatorTwo ? (    
                     ) : (
                         <h3>Viewing Only</h3>
                     )} */}
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     )
 };
 
