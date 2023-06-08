@@ -29,3 +29,15 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_LOBBIES = gql`
+  query lobbies {
+    lobbies {
+      _id
+      createdAt
+      host
+      status
+      topic
+    }
+  }
+`;

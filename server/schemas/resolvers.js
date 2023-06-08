@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Lobby } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -18,6 +18,9 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    lobbies: async () => {
+      return Lobby.find();
+    }
   },
 
   Mutation: {
@@ -42,6 +45,11 @@ const resolvers = {
 
       const token = signToken(profile);
       return { token, profile };
+    },
+    addLobby: async (parent, {host, topic }) => {
+      const lobby = await Lobby.create({host, topic})
+      return
+      // const lobby = await Lobby.create({context})
     },
 
     // Add a third argument to the resolver to access data in our `context`
