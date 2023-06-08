@@ -13,6 +13,38 @@ import Footer from '../components/Footer';
 
 
 const Debate = () => {
+    const [timerRunning, setTimerRunning] = useState(false);
+    const [timerSeconds, setTimerSeconds] = useState(0);
+
+    const startTimer = () => {
+        setTimerRunning(true);
+    };
+
+    const pauseTimer = () => {
+        setTimerRunning(false);
+    };
+
+    const stopTimer = () => {
+        setTimerRunning(false);
+        setTimerSeconds(0);
+    };
+
+    useEffect(() => {
+        let interval = null;
+
+        if (timerRunning) {
+            interval = setInterval(() => {
+                setTimerSeconds((prevSeconds) => prevSeconds + 1);
+            }, 1000);
+        } else {
+            clearInterval(interval);
+        }
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [timerRunning]);
+
     const lobby = useLocation().state.lobby;
     console.log(lobby);
 
@@ -55,15 +87,15 @@ const Debate = () => {
             <div className='w-4/5'>
                 <div className=''>
                     <div className='flex justify-center'>
-                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'>Start</button>
-                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'>Pause</button>
-                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'>Stop</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'onClick={startTimer}>Start</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'onClick={pauseTimer}>Pause</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'onClick={stopTimer}>Stop</button>
                     </div>
                     <div className="header border-2 border-black flex justify-evenly items-center">
                         <div className="user border-2 border-black">User 1</div>
                         <div className="timer border-2 border-black">
                             <p className=''>Timer</p>
-                            <span>00:00:00</span>
+                            <span>{formatTime(timerSeconds)}</span>
                         </div>
                         <div className="user border-2 border-black">User 2</div>
                     </div>
@@ -107,6 +139,17 @@ const Debate = () => {
             </div>
         </div>
     )
+};
+const formatTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 };
 
 export default Debate;
