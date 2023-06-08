@@ -9,6 +9,14 @@ const typeDefs = gql`
     skills: [String]!
   }
 
+  type Lobby {
+    _id: ID
+    createdAt: String
+    host: ID
+    status: String
+    topic: String
+  }
+
   type Auth {
     token: ID!
     profile: Profile
@@ -17,8 +25,8 @@ const typeDefs = gql`
   type Query {
     profiles: [Profile]!
     profile(profileId: ID!): Profile
-    # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
+    lobbies: [Lobby]!
   }
 
   type Mutation {
@@ -28,6 +36,8 @@ const typeDefs = gql`
     addSkill(profileId: ID!, skill: String!): Profile
     removeProfile: Profile
     removeSkill(skill: String!): Profile
+
+    addLobby(host: ID!, topic: String!): Auth
   }
 `;
 

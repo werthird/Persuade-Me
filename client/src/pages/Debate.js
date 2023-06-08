@@ -9,6 +9,7 @@ import { QUERY_PROFILES } from '../utils/queries';
 import Footer from '../components/Footer';
 
 
+
 const socket = io('http://localhost:3001'); // Replace with your server URL
 
 
