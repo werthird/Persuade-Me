@@ -48,8 +48,8 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
 
     return (
         <div className="messages w-full px-5 flex flex-col justify-between">
-            <div className="flex flex-col mt-5">
-                <div className="flex flex-col justify-end mb-4 border-2 border-black">
+            <div className="flex flex-col mt-5 h-80% ">
+                <div className="flex flex-col justify-end mb-4 border-2 border-black overflow-y-scroll ">
                     {chatHistory && chatHistory.messages.map((message) => {
                         return (
                             <div key={uuidv4()}>

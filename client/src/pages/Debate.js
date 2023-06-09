@@ -59,9 +59,10 @@ const Debate = () => {
             clearInterval(interval);
         };
     }, [timerRunning]);
-    
+
+
     console.log(lobbyId)
-    const { err, loading, data } = useQuery(QUERY_MESSAGES, {variables:{lobby: lobbyId}})
+    const { err, loading, data } = useQuery(QUERY_MESSAGES, { variables: { lobby: lobbyId } })
     console.log(data)
 
     return (
@@ -92,9 +93,11 @@ const Debate = () => {
                 </div>
 
                 <div className="content border-2 border-black h-96">
-                    <h2 className='pl-4'>Hello, you are in lobby ID: {lobbyId}</h2>
-                    <h2 className='pl-4'>Lobby topic: {lobby.topic}</h2>
-                    <h2 className='pl-4'>Lobby host: {lobby.host}</h2>
+                    <div>
+                        <h2 className='pl-4'>Hello, you are in lobby ID: {lobbyId}</h2>
+                        <h2 className='pl-4'>Lobby topic: {lobby.topic}</h2>
+                        <h2 className='pl-4'>Lobby host: {lobby.host}</h2>
+                    </div>
 
                     <MessageBox
                         socket={socket}
