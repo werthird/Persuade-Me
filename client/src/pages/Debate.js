@@ -135,6 +135,12 @@ const Debate = () => {
                         <h3>Viewing Only</h3>
                     )} */}
                     </div>
+                    <MessageBox
+                        socket={socket}
+                        lobby={lobby}
+                        author={author}
+                        chatHistory={data}
+                    />
                 </div>
             </div>
         </div>
