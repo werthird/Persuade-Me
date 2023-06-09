@@ -69,9 +69,9 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
                     onChange={(e) => setCurrentMessage(e.target.value)}
                 />
                 <button
-                    className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
+                    className=' bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-3 hover:animate-pulse'
                     onClick={sendMessage}
-                >Send Message</button>
+                >Send</button>
             </div>
             {/* {username === admin || username === debatorOne || username === debatorTwo ? (    
                     ) : (

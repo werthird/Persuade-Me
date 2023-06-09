@@ -71,16 +71,16 @@ const Debate = () => {
                 <div>Viewers:</div>
             </div>
             <div className='w-4/5' id="content-container">
-                <div className='bg-gradient-to-br from-black to-sky-400 '>
+                <div className='bg-gradient-to-br from-black to-sky-400 pb-2'>
                     <div className="border-2 border-black flex justify-evenly items-center">
-                        <div className="user">User 1</div>
-                        <div className="timer">
-                            <p className=''>Timer</p>
+                        <div className="user text-white">User 1</div>
+                        <div className="timer text-white">
+                            <p className='text-center'>Timer:</p>
                             <span>{formatTime(timerSeconds)}</span>
                         </div>
-                        <div className="user">User 2</div>
+                        <div className="user text-white">User 2</div>
                     </div>
-                    <div className='flex justify-center '>
+                    <div className='flex justify-center pt-2'>
                         <button
                             className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
                             id='start'
@@ -94,9 +94,9 @@ const Debate = () => {
                     </div>
                 </div>
                 <div id="info-container">
-                    <h2 className='pl-4'>Hello, you are in lobby ID: {lobbyId}</h2>
-                    <h2 className='pl-4'>Lobby topic: {lobby.topic}</h2>
-                    <h2 className='pl-4'>Lobby host: {lobby.host}</h2>
+                    <h2 className='pl-4 pt-4 text-center'>Hello, you are in lobby ID: {lobbyId}</h2>
+                    <h2 className='pl-4 text-center'>Lobby topic: {lobby.topic}</h2>
+                    <h2 className='pl-4 text-center'>Lobby host: {lobby.host}</h2>
                 </div>
                 <div className="content">
                     <MessageBox
