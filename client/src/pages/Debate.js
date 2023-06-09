@@ -46,6 +46,7 @@ const Debate = () => {
     }
     //listening from server for a timer_event to call.
     socket.on('timer_event', receiveTimer)
+
     useEffect(() => {
         let interval = null;
         if (timerRunning) {

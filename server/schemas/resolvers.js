@@ -28,6 +28,7 @@ const resolvers = {
     messages: async (parent, {lobby}) => {
       console.log(lobby)
       const messages = await Message.find({lobby: lobby})
+      console.log(messages)
       return messages
     }
   },

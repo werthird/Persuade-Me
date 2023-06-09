@@ -13,25 +13,32 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
     const [addMessage, { error }] = useMutation(SEND_MESSAGE);
     console.log(chatHistory)
 
-    useEffect(() => {
-        const receiveMessage = (data) => {
-            console.log(data)
-            setMessageList((list) => [...list, data])
-        }
-        receiveMessage(chatHistory)
-    }, [])
+    // useEffect(() => {
+    //     const receiveMessage = (data) => {
+    //         console.log(data)
+    //         setMessageList((list) => [...list, data])
+    //     }
+    //     receiveMessage(chatHistory);
+    // }, [])
 
     const sendMessage = async () => {
-        const data = { lobby: lobbyId, author: author, role: role, contents: currentMessage }
+        const data = { 
+            lobby: lobbyId, 
+            author: author, 
+            role: role, 
+            contents: currentMessage
+        };
         try {
-            const newMessage = await addMessage({ variables: data })
-
+            const newMessage = await addMessage({ variables: data });
+            data.timestamp = new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes();
+            
+            await socket.emit('client_message', data);
+            setMessageList((list) => [...list, data]);
         } catch (err) {
             console.error(err);
         }
-        setMessageList((list) => [...list, data.contents])
         setMessage('');
-        socket.emit('client_message', data);
+        
     };
 
     useEffect(() => {
@@ -49,6 +56,15 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
             <div className="flex flex-col mt-5 max-h-vw">
                 <div className=" flex flex-col mb-4 border-2 border-black overflow-y-scroll">
                     {chatHistory && chatHistory.messages.map((message) => {
+                        return (
+                            <div className={message.role} key={message._id}>
+                                <p>{message.contents}</p>
+                                <h4>{message.author}</h4>
+                                <h6>{message.timestamp}</h6>
+                            </div>
+                        )
+                    })}
+                    {messageList && messageList.map((message) => {
                         return (
                             <div className={message.role} key={message._id}>
                                 <p>{message.contents}</p>
