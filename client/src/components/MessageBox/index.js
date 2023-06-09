@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { SEND_MESSAGE } from '../../utils/mutations';
 
-import { v4 as uuidv4 } from 'uuid';
-
 const MessageBox = ({ socket, lobby, author, chatHistory }) => {
     const lobbyId = lobby._id
-    console.log(typeof(lobbyId))
+    console.log(typeof (lobbyId))
     let staff = [...lobby.teamA, ...lobby.teamB, ...lobby.admin]
     const role = lobby.teamA.includes(author) ? 'teamA' : lobby.teamB.includes(author) ? 'teamB' : 'admin';
     const [message, setMessage] = useState('');
@@ -14,7 +12,7 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
     const [currentMessage, setCurrentMessage] = useState('');
     const [addMessage, { error }] = useMutation(SEND_MESSAGE);
     console.log(chatHistory)
-    
+
     useEffect(() => {
         const receiveMessage = (data) => {
             console.log(data)
@@ -35,7 +33,7 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
         setMessage('');
         socket.emit('client_message', data);
     };
-    
+
     useEffect(() => {
         const receiveMessage = (data) => {
             setMessageList((list) => [...list, data]);
@@ -48,13 +46,13 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
 
     return (
         <div className="messages w-full px-5 flex flex-col justify-between">
-            <div className="flex flex-col mt-5 h-80% ">
-                <div className="flex flex-col justify-end mb-4 border-2 border-black overflow-y-scroll ">
+            <div className="flex flex-col mt-5 max-h-vw">
+                <div className=" flex flex-col mb-4 border-2 border-black overflow-y-scroll">
                     {chatHistory && chatHistory.messages.map((message) => {
                         return (
-                            <div key={uuidv4()}>
-                                <h4>{message.author}</h4>
+                            <div className={message.role} key={message._id}>
                                 <p>{message.contents}</p>
+                                <h4>{message.author}</h4>
                                 <h6>{message.timestamp}</h6>
                             </div>
                         )
@@ -63,7 +61,7 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
                 <div>
                 </div>
             </div>
-            <div className='py-5 flex mt-52'>
+            <div className='py-5 flex'>
                 <input
                     className='w-full bg-gray-300 py-5 px-3 rounded-xl'
                     type='text'

@@ -66,11 +66,21 @@ const Debate = () => {
     console.log(data)
 
     return (
-        <div id="main" className='border-2 border-black flex'>
-            <div className='viewers w-1/5 border-2 border-black text-center pt-4'>Viewers:</div>
-            <div className='w-4/5'>
-                <div className=''>
-                    <div className='flex justify-center'>
+        <div id="main" className='flex'>
+            <div className='viewers w-1/5 border-2 border-black text-center pt-4' id="viewer-container">
+                <div>Viewers:</div>
+            </div>
+            <div className='w-4/5' id="content-container">
+                <div className='bg-gradient-to-br from-black to-sky-400 '>
+                    <div className="border-2 border-black flex justify-evenly items-center">
+                        <div className="user">User 1</div>
+                        <div className="timer">
+                            <p className=''>Timer</p>
+                            <span>{formatTime(timerSeconds)}</span>
+                        </div>
+                        <div className="user">User 2</div>
+                    </div>
+                    <div className='flex justify-center '>
                         <button
                             className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
                             id='start'
@@ -82,23 +92,13 @@ const Debate = () => {
                             id='stop'
                             onClick={timerEvent}>Stop</button>
                     </div>
-                    <div className="header border-2 border-black flex justify-evenly items-center">
-                        <div className="user border-2 border-black">User 1</div>
-                        <div className="timer border-2 border-black">
-                            <p className=''>Timer</p>
-                            <span>{formatTime(timerSeconds)}</span>
-                        </div>
-                        <div className="user border-2 border-black">User 2</div>
-                    </div>
                 </div>
-
-                <div className="content border-2 border-black h-96">
-                    <div>
-                        <h2 className='pl-4'>Hello, you are in lobby ID: {lobbyId}</h2>
-                        <h2 className='pl-4'>Lobby topic: {lobby.topic}</h2>
-                        <h2 className='pl-4'>Lobby host: {lobby.host}</h2>
-                    </div>
-
+                <div id="info-container">
+                    <h2 className='pl-4'>Hello, you are in lobby ID: {lobbyId}</h2>
+                    <h2 className='pl-4'>Lobby topic: {lobby.topic}</h2>
+                    <h2 className='pl-4'>Lobby host: {lobby.host}</h2>
+                </div>
+                <div className="content">
                     <MessageBox
                         socket={socket}
                         lobby={lobby}
