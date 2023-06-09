@@ -72,4 +72,96 @@ h1 {
 
 #skill {
 border:solid;
-}
+} 
+
+/* 
+Highscore Css Below here */ 
+
+#Page {
+  background-color: #065e06;
+  
+  }
+  
+  .header {
+      border: 1px solid #ddd;
+      /* border-radius: 4px; */
+      padding:10px;
+      /* margin-bottom: 20px; */
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      height: 75px;
+      border: 10px solid  #065e06;
+      /* border-radius: 8px; */
+      padding: 40px;
+      /* margin-bottom: 30px;  */
+      background-color: #21b2e7;
+      color:#065e06; 
+      opacity: 85%;
+      font-size: 20px; 
+      
+  }
+  
+  #C1 {
+      /* border-radius: 16px; */
+      padding: px;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      background-color: #d5ebeb;
+      height: 900px;
+      border: 10px solid ;
+      /* border-radius: 8px; */
+      padding: 5px; 
+      background-color: #9caeb1;
+      background-image: url("./images/XLIRd28ytlwKcMbFoJg1vEZh5xsqUzizC9Dgf5a9oAw.webp"); 
+      background-size: cover;
+      color:#065e06
+  }
+  
+  #container1 {
+      float: left;
+      flex: content;
+      flex-wrap: wrap;
+      flex-direction: row;
+      padding-left: 25px;
+      /* padding-bottom: 250px; */
+      height: 250px;
+      
+    } 
+  
+    .large-container {
+      border: #009900;
+      border: 15px solid;
+      /* border-radius: 8px; */
+      padding: 40px;
+      /* margin-bottom: 40px;  */
+      background-color: #9caeb1;
+      justify-items: center; 
+      display: flex;
+      height: 100px;
+  
+    }
+  
+    h2 {
+      border: #065e06;
+      border-style: inherit; 
+      width:fit-content;
+      align-items: center; 
+      font-size: 60px; 
+      font-style:oblique;
+      padding-right: 35px;
+      padding-left: 35px;
+      /* padding-top: 50px;  */
+      box-sizing: content-box;
+    } 
+  
+    h4 {
+      font-size: 50px;
+    }
+
+    ul {
+      font-size:25px;
+  
+    } 
+
