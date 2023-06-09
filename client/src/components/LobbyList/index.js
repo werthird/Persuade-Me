@@ -32,8 +32,9 @@ const LobbyList = () => {
                                 state= {data}
                             >
                                 <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">{lobby.topic}</h4>
-                                <h4>{lobby.host}</h4>
-                                <h4>{lobby.createdAt}</h4>
+                                <h4>host: {lobby.host}</h4>
+                                <h4>lobby: {lobby._id}</h4>
+                                
                             </Link>
                         </div>
                     })

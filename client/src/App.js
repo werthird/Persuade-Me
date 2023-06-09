@@ -44,13 +44,11 @@ const socket = io('http://localhost:3001'); // Replace with your server URL
 
 function App() {
 
-
   useEffect(() => {
     return () => {
       socket.disconnect();
     };
   }, []);
-
 
   return (
     <ApolloProvider client={client} context={socket}>

@@ -44,3 +44,17 @@ export const QUERY_LOBBIES = gql`
     }
   }
 `;
+
+export const QUERY_MESSAGES = gql`
+query messages($lobby: String!) {
+  messages(lobby: $lobby) {
+    _id
+    author
+    lobby
+    role
+    timestamp
+    contents
+    sources
+  }
+}
+`;

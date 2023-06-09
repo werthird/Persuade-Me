@@ -9,6 +9,16 @@ const typeDefs = gql`
     skills: [String]!
   }
 
+  type Message {
+    _id: ID
+    author: String!
+    lobby: String!
+    role: String!
+    timestamp: String
+    contents: String!
+    sources: [String]
+  }
+
   type Lobby {
     _id: ID
     createdAt: String
@@ -30,6 +40,7 @@ const typeDefs = gql`
     profile(profileId: ID!): Profile
     me: Profile
     lobbies: [Lobby]!
+    messages(lobby: String!): [Message]!
   }
 
   type Mutation {
@@ -40,6 +51,7 @@ const typeDefs = gql`
     removeProfile: Profile
     removeSkill(skill: String!): Profile
 
+    sendMessage(lobby: ID!, author: String!, role: String!, contents: String!, sources: [String]): Profile
     addLobby(host: ID!, topic: String!): Auth
   }
 `;

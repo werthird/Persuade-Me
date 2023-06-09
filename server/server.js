@@ -38,11 +38,17 @@ io.on('connection', (socket) => {
 
   // Listen to any client requests
   socket.on('client_message', (data) => {
-    console.log('Received message:', data.message);
-
-    socket.to(data.lobby).emit('server_message', data.message);
-    console.log('Sent message: ', data.message, `to: ${data.lobby}`)
+    console.log(data)
+    console.log('Received message:', data.contents);
+    socket.to(data.lobby).emit('server_message', data.contents);
+    console.log('Sent message: ', data.contents, `to: ${data.lobby}`)
   });
+
+  //Listen to timer events?
+  socket.on('timer_event', (data) => {
+    console.log(data)
+    socket.in(data.lobby).emit('timer_event', data.event)
+  })
 });
 
 // ======================================================
