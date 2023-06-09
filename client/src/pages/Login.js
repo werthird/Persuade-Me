@@ -41,7 +41,7 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-col flex items-center mb-4 col-lg-10 mx-auto">
+    <main className="flex-col flex items-center mb-4 col-lg-10 mx-auto pl-06">
       <div className="col-lg-10">
         <div className="card">
           <h4 className="card-header bg-dark text-light p-2 text-center font-poppins font-bold">Login:</h4>
@@ -69,7 +69,7 @@ const Login = (props) => {
                 />
                 </label>
                 <label class="block">
-                <span class="block text-sm font-medium text-slate-700 text-center mb-2">Password:</span>
+                <span class="block text-sm font-medium text-slate-700 text-center mb-2 mt-2">Password:</span>
                 <input
                   className="form-input text-center mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                   focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
@@ -83,13 +83,15 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 </label>
+                <div className='ml-8'>
                 <button
-                  className=" mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-14 hover:animate-pulse"
+                  className=" mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-6 hover:animate-pulse"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
                 </button>
+                </div>
                 
               </form>
             )}
