@@ -28,7 +28,7 @@ const LobbyForm = ({}) => {
         <div>
         { Auth.loggedIn() ? (
         <form
-        className = "flex-row justify-center justify-space-between-md align-center"
+        className = "flex-col items-center"
         onSubmit = {handleFormSubmit}>
         <div>Topic:</div>
             <input placeholder="Your topic"

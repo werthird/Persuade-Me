@@ -11,11 +11,11 @@ const Header = () => {
   };
   return (
     
-    <header className=" text-dark mb-4 py-3 flex flex-col bg-gray-500 items-center">
-      <img src={logo} alt="logo" width={1000}/>
+    <header className=" text-dark mb-4 py-3 flex flex-col bg-gradient-to-br from-gray-200 to-slate-700 items-center">
+      <img className='shadow-lg shadow-indigo-300' src={logo} alt="logo" width={1000}/>
       <div className="container flex-column justify-space-between-lg justify-center text-center">
       
-          <h1 className="m-0 text-white font-poppins underline" style={{ fontSize: '3rem' }}>
+          <h1 className="m-0 text-sky-200 font-lora italic" style={{ fontSize: '5rem' }}>
             Let's Debate!
           </h1>
        
