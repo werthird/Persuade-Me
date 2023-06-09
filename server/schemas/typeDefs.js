@@ -51,7 +51,7 @@ const typeDefs = gql`
     removeProfile: Profile
     removeSkill(skill: String!): Profile
 
-    sendMessage(lobby: String!, author: String!, role: String!, contents: String!, sources: [String]): Profile
+    sendMessage(lobby: String!, author: String!, role: String!, contents: String!, sources: [String]): Message
     addLobby(host: ID!, topic: String!): Auth
   }
 `;

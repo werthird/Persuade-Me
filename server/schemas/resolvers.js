@@ -25,9 +25,9 @@ const resolvers = {
       return await Lobby.find();
     },
     //MESSAGE QUERIES
-    messages: async (parent, {lobby}) => {
+    messages: async (parent, { lobby }) => {
       console.log(lobby)
-      const messages = await Message.find({lobby: lobby})
+      const messages = await Message.find({ lobby: lobby })
       console.log(messages)
       return messages
     }
@@ -64,7 +64,7 @@ const resolvers = {
     sendMessage: async (parent, { lobby, author, role, contents, sources }) => {
       sources = !sources ? sources : [];
       const newMessage = await Message.create({ author, lobby, role, contents, sources })
-      return
+      return newMessage
     },
   },
 };
