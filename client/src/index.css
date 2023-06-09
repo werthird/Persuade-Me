@@ -82,25 +82,25 @@ Highscore Css Below here */
   
   }
   
-  .header {
+  /* .header {
       border: 1px solid #ddd;
-      /* border-radius: 4px; */
+      border-radius: 4px;
       padding:10px;
-      /* margin-bottom: 20px; */
+      margin-bottom: 20px;
       flex-wrap: wrap;
       flex-direction: column;
       align-items: center;
       height: 75px;
       border: 10px solid  #065e06;
-      /* border-radius: 8px; */
+      border-radius: 8px;
       padding: 40px;
-      /* margin-bottom: 30px;  */
+      margin-bottom: 30px; 
       background-color: #21b2e7;
       color:#065e06; 
       opacity: 85%;
       font-size: 20px; 
       
-  }
+  } */
   
   #C1 {
       /* border-radius: 16px; */
@@ -142,20 +142,7 @@ Highscore Css Below here */
       height: 100px;
   
     }
-  
-    h2 {
-      border: #065e06;
-      border-style: inherit; 
-      width:fit-content;
-      align-items: center; 
-      font-size: 60px; 
-      font-style:oblique;
-      padding-right: 35px;
-      padding-left: 35px;
-      /* padding-top: 50px;  */
-      box-sizing: content-box;
-    } 
-  
+
     h4 {
       font-size: 50px;
     }
@@ -165,3 +152,51 @@ Highscore Css Below here */
   
     } 
 
+
+/* Viewers window container */
+#main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #9caeb1, #2c3e50);
+  color: white; 
+  text-decoration: wavy; font-style:inherit ;
+  font-size: medium;
+  border: #9caeb1;
+  /* Replace the above color values with your desired gradient colors */
+}
+
+/* Content within the viewers window */
+#main-content {
+  text-align: center;
+  color: #fff;
+}
+
+/* Example text styles */
+#main-content h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+#main-content p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Example button styles */
+#main-content .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #2980b9;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#main-content .button:hover {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}

@@ -82,8 +82,8 @@ const Debate = () => {
     }, [socket]);
 
     return (
-        <div id="main" className='border-2 border-black flex'>
-            <div className='viewers w-1/5 border-2 border-black text-center pt-4'>Viewers:</div>
+        <div id="main" className=' shadow-lg shadow-indigo-300 flex'>
+            <div className='pb-2 mb-80 viewers w-1/5 border-2 border-black text-center pt-12'>Viewers:</div>
             <div className='w-4/5'>
                 <div className=''>
                     <div className='flex justify-center'>
@@ -118,9 +118,9 @@ const Debate = () => {
                             <div>
                             </div>
                         </div>
-                        <div className='py-5 flex mt-52'>
+                        <div className='py-5 flex justify-items-center sticky mt-40'>
                             <input
-                                className='w-full bg-gray-300 py-5 px-3 rounded-xl'
+                                className='w-full text-black bg-gray-300 py-5 px-3 rounded-xl'
                                 type='text'
                                 placeholder='Message...'
                                 onChange={(e) => setCurrentMessage(e.target.value)}

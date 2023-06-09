@@ -6,7 +6,6 @@ import { useQuery } from '@apollo/client';
 
 
 const Highscore = () => {
-
     return (
 <div>
 {/* <div className="header">
@@ -15,11 +14,9 @@ const Highscore = () => {
 <body>
     <div id="main" >
         <div id="C1" className="large-container" >
-            <h2>Are you the Master Debater?</h2>
+            <h2 id="top"> Are you the Master Debater?</h2>
             <h4>Top Debaters</h4>
-            
         </div>
-        
     </div>
 </body> 
 </div>
