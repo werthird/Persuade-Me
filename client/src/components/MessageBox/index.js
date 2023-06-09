@@ -11,8 +11,8 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
     const [messageList, setMessageList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState('');
     const [addMessage, { error }] = useMutation(SEND_MESSAGE);
-    console.log(chatHistory)
-
+  
+    const lastElement = document.getElementById('lastElement');
     // useEffect(() => {
     //     const receiveMessage = (data) => {
     //         console.log(data)
@@ -22,28 +22,37 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
     // }, [])
 
     const sendMessage = async () => {
-        const data = { 
-            lobby: lobbyId, 
-            author: author, 
-            role: role, 
+        const data = {
+            lobby: lobbyId,
+            author: author,
+            role: role,
             contents: currentMessage
         };
         try {
             const newMessage = await addMessage({ variables: data });
-            data.timestamp = new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes();
-            
-            await socket.emit('client_message', data);
-            setMessageList((list) => [...list, data]);
+            console.log(newMessage)
+            await socket.emit('client_message', newMessage.data.sendMessage);
+            setMessageList((list) => [...list, newMessage.data.sendMessage]);
+            try{
+            lastElement.scrollIntoView({behavior:'smooth'})
+            }catch{
+                console.log('nah bro')
+            }
         } catch (err) {
             console.error(err);
         }
         setMessage('');
-        
+
     };
 
     useEffect(() => {
         const receiveMessage = (data) => {
             setMessageList((list) => [...list, data]);
+            try{
+                lastElement.scrollIntoView({behavior:'smooth'})
+                }catch{
+                    console.log('nah bro')
+                }
         };
         socket.on('server_message', receiveMessage);
         return () => {
@@ -67,12 +76,13 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
                     {messageList && messageList.map((message) => {
                         return (
                             <div className={message.role} key={message._id}>
-                                <p>{message.contents}</p>
-                                <h4>{message.author}</h4>
-                                <h6>{message.timestamp}</h6>
+                                <p className='mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white'>{message.contents}</p>
+                                <h4 className='text-center'>{message.author}</h4>
+                                <h6 className='text-center'>{message.timestamp}</h6>
                             </div>
                         )
                     })}
+                    <div id='lastElement'> </div>
                 </div>
                 <div>
                 </div>

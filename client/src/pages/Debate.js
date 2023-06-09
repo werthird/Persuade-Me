@@ -12,6 +12,7 @@ const Debate = () => {
     const author = Auth.getProfile().data.name;
     //lobby info to render page/components
     const lobby = useLocation().state.lobby;
+    console.log(lobby)
     const lobbyId = lobby._id
     //socket, join lobby.
     const socket = io('http://localhost:3001');
@@ -61,15 +62,13 @@ const Debate = () => {
         };
     }, [timerRunning]);
 
-
-    console.log(lobbyId)
     const { err, loading, data } = useQuery(QUERY_MESSAGES, { variables: { lobby: lobbyId } })
-    console.log(data)
 
     return (
         <div id="main" className='flex'>
             <div className='viewers w-1/5 border-2 border-black text-center pt-4' id="viewer-container">
                 <div>Viewers:</div>
+                
             </div>
             <div className='w-4/5' id="content-container">
                 <div className='bg-gradient-to-br from-black to-sky-400 pb-2'>

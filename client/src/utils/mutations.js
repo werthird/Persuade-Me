@@ -53,10 +53,15 @@ export const ADD_LOBBY = gql`
 `;
 
 export const SEND_MESSAGE = gql`
-  mutation Mutation($lobby: String!, $author: String!, $role: String!, $contents: String!) {
+  mutation SendMessage($lobby: String!, $author: String!, $role: String!, $contents: String!) {
     sendMessage(lobby: $lobby, author: $author, role: $role, contents: $contents) {
       _id
-      name
+      author
+      lobby
+      role
+      timestamp
+      contents
+      sources
     }
   }
 `;
