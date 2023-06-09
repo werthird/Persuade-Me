@@ -17,7 +17,7 @@ import Login from './pages/Login';
 import Debate from './pages/Debate';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import Highscore from './pages/Highscore';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -82,6 +82,10 @@ function App() {
               <Route 
                 path="/lobby/:lobbyId"
                 element={<Debate />}
+              />
+              <Route 
+                path="/highscore"
+                element={<Highscore />}
               />
             </Routes>
           </div>
