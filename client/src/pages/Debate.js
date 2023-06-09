@@ -1,37 +1,53 @@
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { Navigate, useParams, useLocation } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+import { QUERY_MESSAGES } from '../utils/queries';
+import MessageBox from '../components/MessageBox'
 
-import ProfileList from '../components/ProfileList';
-
-import { QUERY_PROFILES } from '../utils/queries';
-import Footer from '../components/Footer';
-
-
-
+import Auth from '../utils/auth';
 
 const Debate = () => {
+    //author info
+    const author = Auth.getProfile().data.name;
+    //lobby info to render page/components
+    const lobby = useLocation().state.lobby;
+    const lobbyId = lobby._id
+    //socket, join lobby.
+    const socket = io('http://localhost:3001');
+    const joinLobby = () => {
+        socket.emit('join_lobby', `${lobbyId}`)
+        console.log(`user joined ${lobbyId}`)
+    };
+    joinLobby();
+
+    //timer states
     const [timerRunning, setTimerRunning] = useState(false);
     const [timerSeconds, setTimerSeconds] = useState(0);
-
-    const startTimer = () => {
-        setTimerRunning(true);
+    //time controls, events, socket on
+    const timerControls = {
+        start: () => { return setTimerRunning(true); },
+        pause: () => { return setTimerRunning(false); },
+        stop: () => {
+            setTimerRunning(false);
+            setTimerSeconds(0)
+            return
+        }
+    }
+    const timerEvent = (event) => {
+        const data = { event: event.target.id, lobby: lobbyId }
+        console.log(data)
+        socket.emit('timer_event', data)
     };
-
-    const pauseTimer = () => {
-        setTimerRunning(false);
-    };
-
-    const stopTimer = () => {
-        setTimerRunning(false);
-        setTimerSeconds(0);
-    };
-
+    const receiveTimer = (data) => {
+        console.log(data)
+        timerControls[data]()
+        return () => { socket.off('timer_event', receiveTimer) }
+    }
+    //listening from server for a timer_event to call.
+    socket.on('timer_event', receiveTimer)
     useEffect(() => {
         let interval = null;
-
         if (timerRunning) {
             interval = setInterval(() => {
                 setTimerSeconds((prevSeconds) => prevSeconds + 1);
@@ -39,47 +55,14 @@ const Debate = () => {
         } else {
             clearInterval(interval);
         }
-
         return () => {
             clearInterval(interval);
         };
     }, [timerRunning]);
-
-    const lobby = useLocation().state.lobby;
-    console.log(lobby);
-
-    const socket = io('http://localhost:3001'); // Replace with your server URL
-
-    const { lobbyId } = useParams();
-
-
-    const [message, setMessage] = useState('');
-    const [messageList, setMessageList] = useState([]);
-    const [currentMessage, setCurrentMessage] = useState('');
-
-    const joinLobby = () => {
-        socket.emit('join_lobby', `${lobbyId}`)
-        console.log(`user joined ${lobbyId}`)
-    };
-    joinLobby();
-
-    const sendMessage = () => {
-        const data = { message: currentMessage, lobby: lobbyId }
-        socket.emit('client_message', data);
-        setMessageList((list) => [...list, data.message])
-        setMessage('');
-    };
-
-    useEffect(() => {
-        const receiveMessage = (data) => {
-            setMessageList((list) => [...list, data]);
-        };
-        socket.on('server_message', receiveMessage);
-        console.log('this was received')
-        return () => {
-            socket.off('server_message', receiveMessage);
-        };
-    }, [socket]);
+    
+    console.log(lobbyId)
+    const { err, loading, data } = useQuery(QUERY_MESSAGES, {variables:{lobby: lobbyId}})
+    console.log(data)
 
     return (
         <div id="main" className='border-2 border-black flex'>
@@ -87,9 +70,16 @@ const Debate = () => {
             <div className='w-4/5'>
                 <div className=''>
                     <div className='flex justify-center'>
-                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'onClick={startTimer}>Start</button>
-                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'onClick={pauseTimer}>Pause</button>
-                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'onClick={stopTimer}>Stop</button>
+                        <button
+                            className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
+                            id='start'
+                            onClick={timerEvent}>Start</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
+                            id='pause'
+                            onClick={timerEvent}>Pause</button>
+                        <button className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
+                            id='stop'
+                            onClick={timerEvent}>Stop</button>
                     </div>
                     <div className="header border-2 border-black flex justify-evenly items-center">
                         <div className="user border-2 border-black">User 1</div>
@@ -106,35 +96,12 @@ const Debate = () => {
                     <h2 className='pl-4'>Lobby topic: {lobby.topic}</h2>
                     <h2 className='pl-4'>Lobby host: {lobby.host}</h2>
 
-                    <div className="messages w-full px-5 flex flex-col justify-between">
-                        <div className="flex flex-col mt-5">
-                            <div className="flex flex-col justify-end mb-4 border-2 border-black">
-                                {messageList.map((messageContent) => {
-                                    return (
-                                        <p key={uuidv4()}>{messageContent}</p>
-                                    )
-                                })}
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div className='py-5 flex mt-52'>
-                            <input
-                                className='w-full bg-gray-300 py-5 px-3 rounded-xl'
-                                type='text'
-                                placeholder='Message...'
-                                onChange={(e) => setCurrentMessage(e.target.value)}
-                            />
-                            <button
-                                className='bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 mr-5 border-none rounded-md ml-12 hover:animate-pulse'
-                                onClick={sendMessage}
-                            >Send Message</button>
-                        </div>
-                        {/* {username === admin || username === debatorOne || username === debatorTwo ? (    
-                    ) : (
-                        <h3>Viewing Only</h3>
-                    )} */}
-                    </div>
+                    <MessageBox
+                        socket={socket}
+                        lobby={lobby}
+                        author={author}
+                        chatHistory={data}
+                    />
                 </div>
             </div>
         </div>
