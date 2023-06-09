@@ -66,19 +66,18 @@ const Debate = () => {
 
     return (
         <div id="main" className='flex'>
-            <div className='viewers w-1/5 border-2 border-black text-center pt-4' id="viewer-container">
-                <div>Viewers:</div>
-                
+            <div className='viewers w-1/5 border-2 border-slate-300 text-center pt-4' id="viewer-container">
+                <div className='font-semibold'>Viewers:</div>
             </div>
             <div className='w-4/5' id="content-container">
                 <div className='bg-gradient-to-br from-black to-sky-400 pb-2'>
                     <div className="border-2 border-black flex justify-evenly items-center">
-                        <div className="user text-white">User 1</div>
+                        <div className="user text-white font-semibold">User 1</div>
                         <div className="timer text-white">
-                            <p className='text-center'>Timer:</p>
+                            <p className='text-center font-semibold'>Timer:</p>
                             <span>{formatTime(timerSeconds)}</span>
                         </div>
-                        <div className="user text-white">User 2</div>
+                        <div className="user text-white font-semibold">User 2</div>
                     </div>
                     <div className='flex justify-center pt-2'>
                         <button

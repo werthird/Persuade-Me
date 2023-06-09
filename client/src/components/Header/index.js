@@ -11,7 +11,7 @@ const Header = () => {
   };
   return (
     
-    <header className=" text-dark mb-4 py-3 flex flex-col bg-gradient-to-br from-gray-200 to-slate-700 items-center">
+    <header className=" text-dark py-3 flex flex-col bg-gradient-to-br from-gray-200 to-slate-700 items-center">
       <img className='shadow-lg shadow-indigo-300' src={logo} alt="logo" width={1000}/>
       <div className="container flex-column justify-space-between-lg justify-center text-center">
       
