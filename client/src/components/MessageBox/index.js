@@ -45,15 +45,15 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
     }, [socket]);
 
     return (
-        <div className="messages w-full px-5 flex flex-col justify-between">
+        <div className="messages w-full px-5 flex flex-col justify-between ">
             <div className="flex flex-col mt-5 max-h-vw">
                 <div className=" flex flex-col mb-4 border-2 border-black overflow-y-scroll">
                     {chatHistory && chatHistory.messages.map((message) => {
                         return (
-                            <div className={message.role} key={message._id}>
-                                <p>{message.contents}</p>
-                                <h4>{message.author}</h4>
-                                <h6>{message.timestamp}</h6>
+                            <div className={message.role} key={message._id} >
+                                <p className='mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white'>{message.contents}</p>
+                                <h4 className='text-center'>{message.author}</h4>
+                                <h6 className='text-center'>{message.timestamp}</h6>
                             </div>
                         )
                     })}
