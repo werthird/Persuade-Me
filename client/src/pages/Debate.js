@@ -15,13 +15,14 @@ const Debate = () => {
     console.log(lobby)
     const lobbyId = lobby._id
     //socket, join lobby.
+
     const socket = io('http://localhost:3001');
     const joinLobby = () => {
         socket.emit('join_lobby', `${lobbyId}`)
         console.log(`user joined ${lobbyId}`)
     };
-    joinLobby();
 
+    joinLobby();
     //timer states
     const [timerRunning, setTimerRunning] = useState(false);
     const [timerSeconds, setTimerSeconds] = useState(0);
