@@ -12,16 +12,6 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-export const ADD_SKILL = gql`
-  mutation addSkill($profileId: ID!, $skill: String!) {
-    addSkill(profileId: $profileId, skill: $skill) {
-      _id
-      name
-      skills
-    }
-  }
-`;
-
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -45,7 +35,7 @@ export const REMOVE_SKILL = gql`
 `;
 
 export const ADD_LOBBY = gql`
-  mutation AddLobby($host: ID!, $topic: String!) {
+  mutation AddLobby($host: String!, $topic: String!) {
     addLobby(host: $host, topic: $topic) {
       token
     }
@@ -53,15 +43,10 @@ export const ADD_LOBBY = gql`
 `;
 
 export const ADD_STAFF = gql`
-mutation AddStaff($lobby: String!, $role: String!, $user: String!) {
+mutation addStaff($lobby: String!, $role: String!, $user: String!) {
   addStaff(lobby: $lobby, role: $role, user: $user) {
-    _id
-    createdAt
-    host
-    status
-    topic
-    teamA
     teamB
+    teamA
     admin
   }
 }

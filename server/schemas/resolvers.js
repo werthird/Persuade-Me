@@ -60,21 +60,21 @@ const resolvers = {
       const lobby = await Lobby.create({ host, topic })
       return
     },
-    addStaff: async(parent, {lobby, role, user}) => {
+    addStaff: async (parent, { lobby, role, user }) => {
       const roleDict = {
-        teamA: {teamA: user},
-        teamB: {teamB: user}
+        teamA: { teamA: user },
+        teamB: { teamB: user }
       }
       console.log(lobby, role, user, roleDict[role])
       try {
-      const newLobby = await Lobby.findOneAndUpdate(
-        {_id: lobby},
-        {$addToSet: roleDict[role]},
-        {new : true}
+        const newLobby = await Lobby.findOneAndUpdate(
+          { _id: lobby },
+          { $addToSet: roleDict[role] },
+          { new: true }
         );
         console.log(newLobby)
         return newLobby;
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       }
     },

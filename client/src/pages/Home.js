@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LobbyForm from '../components/LobbyForm';
 import LobbyList from '../components/LobbyList';
+import {Redirect} from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
@@ -15,7 +16,7 @@ const Home = () => {
             <LobbyForm />
             <LobbyList />
             </div>
-   ) : (<div>example failure</div>)}
+   ) : (<div></div>)}
         </div>
       </div>
     </main>
