@@ -52,6 +52,7 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
 
     useEffect(() => {
         const receiveMessage = (data) => {
+            console.log(data)
             setMessageList((list) => [...list, data]);
             try {
                 lastElement.scrollIntoView({ behavior: 'smooth' })

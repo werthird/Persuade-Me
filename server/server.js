@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
   socket.on('client_message', (data) => {
     console.log(data)
     console.log('Received message:', data.contents);
-    socket.to(data.lobby).emit('server_message', data.contents);
+    socket.to(data.lobby).emit('server_message', data);
     console.log('Sent message: ', data.contents, `to: ${data.lobby}`)
   });
 
