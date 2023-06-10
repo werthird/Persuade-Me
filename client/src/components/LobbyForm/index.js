@@ -9,7 +9,7 @@ import Auth from '../../utils/auth';
 const LobbyForm = ({}) => {
     const [topic, setTopic] = useState('')
     const [addLobby, { error }] = useMutation(ADD_LOBBY);
-    const profileID = Auth.getProfile().data._id
+    const profileID = Auth.getProfile().data.name
 
     const handleFormSubmit = async(event) => {
         event.preventDefault();

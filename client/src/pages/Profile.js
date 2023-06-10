@@ -4,7 +4,6 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import SkillsList from '../components/SkillsList';
-import SkillForm from '../components/SkillForm';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
@@ -44,27 +43,17 @@ const Profile = () => {
   }
 
   return (
-    
 
-      <div  id="pbackground" className="my-4 p-4" style={{ border: '5px solid  #9caeb1 ' }}>
-        <SkillForm profileId={profile._id} />
- 
-        <div>
-   <div id="UserId" className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} User ID
-      </div>
-{/* 
-      {profile.skills?.length > 0 && (
-        <SkillsList
-          skills={profile.skills}
-          isLoggedInUser={!profileId && true}
-        />
-      )} */}
+    <div id="pbackground" className="my-4 p-4" style={{ border: '5px solid  #9caeb1 ' }}>
+      <div>
+        <div id="UserId" className="card-header">
+          {profileId ? `${profile.name}'s` : 'Your'} User ID
+        </div>
         <div>
           W/L
-          </div>
-      
-        
+        </div>
+
+
       </div>
     </div>
   );

@@ -53,8 +53,8 @@ const Login = (props) => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <label class="block">
-                <span class="block text-sm font-medium text-slate-700 text-center mb-2">Username:</span>
+                <label className="block">
+                <span className="block text-sm font-medium text-slate-700 text-center mb-2">Username:</span>
                 <input
                   className="form-input mr-4 text-center mb-2mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                   focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
@@ -68,8 +68,8 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 </label>
-                <label class="block">
-                <span class="block text-sm font-medium text-slate-700 text-center mb-2 mt-2">Password:</span>
+                <label className="block">
+                <span className="block text-sm font-medium text-slate-700 text-center mb-2 mt-2">Password:</span>
                 <input
                   className="form-input text-center mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                   focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500

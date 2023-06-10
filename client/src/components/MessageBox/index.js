@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { SEND_MESSAGE } from '../../utils/mutations';
 
-const MessageBox = ({ socket, lobby, author, chatHistory }) => {
+const MessageBox = ({ socket, lobby, author, chatData}) => {
+    console.log(chatData)
     const isHost = () => { return author === lobby.host }
     const lobbyId = lobby._id;
-    console.log(lobby)
-    let staff = [...lobby.teamA, ...lobby.teamB, ...lobby.admin];
-    console.log(staff)
-    const role = lobby.teamA.includes(author)
+    let thisLobby = lobby
+    let staff = [...thisLobby.teamA, ...thisLobby.teamB, ...thisLobby.admin];
+    
+    
+    const role = thisLobby.teamA.includes(author)
         ? 'teamA'
-        : lobby.teamB.includes(author)
+        : thisLobby.teamB.includes(author)
             ? 'teamB'
             : isHost() ? 'host' : 'viewer';
-    console.log(role)
     const [message, setMessage] = useState('');
     const [messageList, setMessageList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState('');
@@ -21,7 +22,6 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
     const [showEmojis, setShowEmojis] = useState(false);
     const lastElement = document.getElementById('lastElement')
     const emojis = ['😀', '😄', '😊', '👍', '👋', '❤️', '🖕', '🤣', '✅', '☠️', '🤩'];
-
     const sendMessage = async () => {
         const data = {
             lobby: lobbyId,
@@ -45,21 +45,17 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
         setMessage('');
         setShowEmojis(false);
     };
-
-
-
     const handleEmojiClick = (emoji) => {
         setCurrentMessage((prevMessage) => prevMessage + emoji);
     };
 
+
     useEffect(() => {
         const receiveMessage = (data) => {
-            console.log(data)
             setMessageList((list) => [...list, data]);
             try {
                 lastElement.scrollIntoView({ behavior: 'smooth' })
             } catch {
-                console.log('nah bro')
             }
         };
         socket.on('server_message', receiveMessage);
@@ -74,19 +70,19 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
         admin: 'host items-center mx-2 my-2 py-3 px-4 min-w-min max-w-max bg-gray-400 rounded-lg',
         host: 'host items-center mx-2 my-2 py-3 px-4 min-w-min max-w-max bg-gray-400 rounded-lg'
     }
-
     const dateConversion = (timestamp) => {
-        console.log(timestamp)
         const newTime = new Date(parseInt(timestamp)).toTimeString().split(' ')
-        console.log(newTime)
-        return newTime[0]
+        const newFormat = newTime[0].split(':')
+        const hr = newFormat[0] <= 12 && newFormat[0] > 0 ? newFormat[0] : newFormat[0] > 12 ? (parseInt(newTime[0])-12).toString() : '12'
+        const xM = newFormat[0] >= 12 ? ' PM' : ' AM'
+        return `${hr}:${newFormat[1]}:${newFormat[2]}${xM}`
     }
 
     return (
         <div className="messages w-full px-5 flex flex-col justify-between">
             <div className="flex flex-col mt-5 max-h-vw">
                 <div className=" flex flex-col mb-4 overflow-y-scroll">
-                    {chatHistory && chatHistory.messages.map((message) => {
+                    {chatData && chatData.messages.map((message) => {
                         return (
                             <div className={messageRole[message.role]} key={message._id}>
                                 <h4 className='text-center text-black font-lora text-xl font-semibold'>{message.author}</h4>
@@ -100,7 +96,7 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
                     {messageList && messageList.map((message) => {
                         return (
                             <div className={messageRole[message.role]} key={message._id}>
-                                <h4 className='text-center font-lora text-xl font-semibold'>{message.author}</h4>
+                                <h4 className='text-center text-black font-lora text-xl font-semibold'>{message.author}</h4>
                                 <p className={'text-center text-white'}>{message.contents}</p>
                                 <h6 className='text-center text-xs text-gray-800 mt-2'>Sent: {dateConversion(message.timestamp)}</h6>
                             </div>
