@@ -16,27 +16,26 @@ const LobbyList = () => {
     console.log(data.lobbies)
 
     return (
-        <div id="Lobby">
-            <h3 className="text-primary">LOBBIES</h3>
-            <div className="flex-row justify-space-between my-4">
+        <div id="Lobby" className="w-full">
+            <h3 className="text-center text-4xl font-bold mb-5">Active Lobbies</h3>
+            <div className="flex flex-row flex-wrap justify-evenly border-2 border-black">
                 {console.log(data.lobbies)}
                 {data.lobbies &&
                     data.lobbies.map((lobby) => {
                         const data = { lobby }
-                        return <div className="card mb-3" key={lobby._id}>
-                            <Link
-                                className=""
-                                to={{
-                                    pathname: `/lobby/${lobby._id}`,
-                                }}
-                                state= {data}
-                            >
-                                <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">{lobby.topic}</h4>
-                                <h4>host: {lobby.host}</h4>
-                                <h4>lobby: {lobby._id}</h4>
-                                
-                            </Link>
-                        </div>
+                        return (
+                            <div className="h-40 bg-black rounded-2xl opacity-40 blur-sm" key={lobby._id}>
+                                <Link className=""
+                                    to={{ pathname: `/lobby/${lobby._id}` }}
+                                    state= {data} >
+                                    <p className='h-1/4 text-center p-2 bg-black text-white font-medium rounded-t-lg border border-black'>{lobby.topic}</p>
+                                    <div className="h-3/4 text-white p-2 opacity-100">
+                                        <p className="text-opacity-100"><b>Created By:</b> {lobby.host}</p>
+                                        <p><b>Lobby ID:</b> {lobby._id}</p>  
+                                    </div>
+                                </Link>
+                            </div>
+                        )
                     })
                 }
             </div>

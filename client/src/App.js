@@ -3,13 +3,14 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  createHttpLink
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation  } from 'react-router-dom';
 // Import Socket
 import io from 'socket.io-client';
 
+import Landing from './pages/Landing';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
@@ -42,6 +43,27 @@ const client = new ApolloClient({
 const socket = io('http://localhost:3001'); // Replace with your server URL
 
 
+function HomeHeaderWrapper() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  if (isHomePage) {
+    return null;
+  } else {
+    return <Header />;
+  }
+}
+
+function HomeFooterWrapper() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  if (isHomePage) {
+    return null;
+  } else {
+    return <Footer />;
+  }
+}
+
+
 function App() {
 
   useEffect(() => {
@@ -54,11 +76,15 @@ function App() {
     <ApolloProvider client={client} context={socket}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
+          <HomeHeaderWrapper />
           <div className="flex flex-col justify-center">
             <Routes>
               <Route 
                 path="/"
+                element={<Landing />}
+              />
+              <Route 
+                path="/home"
                 element={<Home />}
               />
               <Route
@@ -87,7 +113,7 @@ function App() {
               />
             </Routes>
           </div>
-          <Footer />
+          <HomeFooterWrapper />
         </div>
       </Router>
     </ApolloProvider>

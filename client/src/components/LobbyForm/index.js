@@ -13,7 +13,7 @@ const LobbyForm = ({}) => {
 
     const handleFormSubmit = async(event) => {
         event.preventDefault();
-        console.log(profileID)
+        console.log(profileID);
         try{
             const data = await addLobby(
             {variables : {host:profileID,topic: topic}}
@@ -25,32 +25,35 @@ const LobbyForm = ({}) => {
         }
     };
     return (
-        <div>
-        { Auth.loggedIn() ? (
-        <form
-        className = "flex-col items-center"
-        onSubmit = {handleFormSubmit}>
-        <div>Topic:</div>
-            <input placeholder="Your topic"
-                  name="topic"
-                  type="topic"
-                  onChange={(event) => setTopic(event.target.value)}
-                />
-                <button
-                  className=" mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-12 hover:animate-pulse"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-        </form>
-        
-        ):(
+        <div className='w-full flex justify-center'>
+          { Auth.loggedIn() ? (
+            <form className = "h-40 w-1/2 mb-10 pbackground rounded-3xl shadow-xl shadow-black" onSubmit={handleFormSubmit}>
+              <div className='w-full h-full flex flex-col justify-evenly items-center rounded-3xl shadow-inner shadow-xl shadow-white'>
+                <p className='text-center text-2xl font-bold'>Create A New Debate Room</p>
+                <div className='flex justify-center h-fit w-full'>
+                  <input 
+                    className='h-full w-3/4 bg-black px-2 placeholder-white'
+                    placeholder="Your Debate Topic..."
+                    name="topic"
+                    type="topic"
+                    onChange={(event) => setTopic(event.target.value)}
+                  />
+                  <button
+                    className="bg-white font-medium shadow-inner shadow-black px-4 py-2 border-none hover:animate-pulse"
+                    style={{ cursor: 'pointer' }}
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          ):(
             <p>
-          You need to be logged in to create a Lobby. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
-        )}
+              You need to be logged in to create a Lobby. Please{' '}
+              <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+            </p>
+          )}
         </div>
     )
 }

@@ -1,0 +1,31 @@
+localhost:3000/
+
+  Homepage
+    Comp:
+    - login form
+
+    Comp:
+    - Dashboard
+      - Header
+      - Create lobby
+          - Lobby #
+          - Admin defalt/username
+      - Active lobby
+
+
+localhost:3000/lobby/:id
+
+Lobby page
+
+  - Admin
+    - Staff assignment
+    - Lobby control
+  - Debator
+    - Input field
+  - Spectator
+  
+
+
+
+
+
