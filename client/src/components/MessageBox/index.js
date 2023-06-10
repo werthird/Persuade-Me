@@ -74,7 +74,7 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
                             <div className={message.role} key={message._id}>
                                 <p className='mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white'>{message.contents}</p>
                                 <h6 className='text text-center text-xs text-gray-400'>{message.timestamp}</h6>
-                                <h4 className='text-center ml-32 font-lora text-xl font-semibold'>{message.author}</h4>
+                                <h4 className='text-center  font-lora text-xl font-semibold'>{message.author}</h4>
                             </div>
                         )
                     })}
@@ -83,7 +83,7 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
                             <div className={message.role} key={message._id}>
                                 <p className='mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white'>{message.contents}</p>
                                 <h6 className='text text-center text-xs text-gray-400'>Sent:  {message.timestamp}</h6>
-                                <h4 className='text-center ml-32 font-lora text-xl font-semibold'>{message.author}</h4>
+                                <h4 className='text-center font-lora text-xl font-semibold'>{message.author}</h4>
                             </div>
                         )
                     })}
