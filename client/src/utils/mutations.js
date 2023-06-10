@@ -52,6 +52,21 @@ export const ADD_LOBBY = gql`
   }
 `;
 
+export const ADD_STAFF = gql`
+mutation AddStaff($lobby: String!, $role: String!, $user: String!) {
+  addStaff(lobby: $lobby, role: $role, user: $user) {
+    _id
+    createdAt
+    host
+    status
+    topic
+    teamA
+    teamB
+    admin
+  }
+}
+`;
+
 export const SEND_MESSAGE = gql`
   mutation SendMessage($lobby: String!, $author: String!, $role: String!, $contents: String!) {
     sendMessage(lobby: $lobby, author: $author, role: $role, contents: $contents) {

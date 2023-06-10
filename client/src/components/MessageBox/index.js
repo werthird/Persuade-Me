@@ -3,15 +3,17 @@ import { useQuery, useMutation } from '@apollo/client';
 import { SEND_MESSAGE } from '../../utils/mutations';
 
 const MessageBox = ({ socket, lobby, author, chatHistory }) => {
-
+    const isHost = () => { return author === lobby.host }
     const lobbyId = lobby._id;
-    console.log(typeof lobbyId);
+    console.log(lobby)
     let staff = [...lobby.teamA, ...lobby.teamB, ...lobby.admin];
+    console.log(staff)
     const role = lobby.teamA.includes(author)
         ? 'teamA'
         : lobby.teamB.includes(author)
             ? 'teamB'
-            : 'admin';
+            : isHost() ? 'host' : 'viewer';
+    console.log(role)
     const [message, setMessage] = useState('');
     const [messageList, setMessageList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState('');
@@ -66,25 +68,41 @@ const MessageBox = ({ socket, lobby, author, chatHistory }) => {
         };
     }, [socket]);
 
+    const messageRole = {
+        teamB: 'teamB mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-t-lg rounded-bl-lg text-white',
+        teamA: 'teamA mt-4 ml-2 py-3 px-4 bg-green-400 rounded-t-lg rounded-br-lg text-white',
+        admin: 'host items-center mx-2 my-2 py-3 px-4 min-w-min max-w-max bg-gray-400 rounded-lg',
+        host: 'host items-center mx-2 my-2 py-3 px-4 min-w-min max-w-max bg-gray-400 rounded-lg'
+    }
+
+    const dateConversion = (timestamp) => {
+        console.log(timestamp)
+        const newTime = new Date(parseInt(timestamp)).toTimeString().split(' ')
+        console.log(newTime)
+        return newTime[0]
+    }
+
     return (
         <div className="messages w-full px-5 flex flex-col justify-between">
             <div className="flex flex-col mt-5 max-h-vw">
                 <div className=" flex flex-col mb-4 overflow-y-scroll">
                     {chatHistory && chatHistory.messages.map((message) => {
                         return (
-                            <div className={message.role} key={message._id}>
-                                <p className='mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white'>{message.contents}</p>
-                                <h6 className='text text-center text-xs text-gray-400'>{message.timestamp}</h6>
-                                <h4 className='text-center  font-lora text-xl font-semibold'>{message.author}</h4>
+                            <div className={messageRole[message.role]} key={message._id}>
+                                <h4 className='text-center text-black font-lora text-xl font-semibold'>{message.author}</h4>
+                                <p className={'text-center text-white'}>{message.contents}</p>
+                                <h6 className='text-center text-xs text-gray-800 mt-2'>Sent: {dateConversion(message.timestamp)}</h6>
+
+
                             </div>
                         )
                     })}
                     {messageList && messageList.map((message) => {
                         return (
-                            <div className={message.role} key={message._id}>
-                                <p className='mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white'>{message.contents}</p>
-                                <h6 className='text text-center text-xs text-gray-400'>Sent:  {message.timestamp}</h6>
+                            <div className={messageRole[message.role]} key={message._id}>
                                 <h4 className='text-center font-lora text-xl font-semibold'>{message.author}</h4>
+                                <p className={'text-center text-white'}>{message.contents}</p>
+                                <h6 className='text-center text-xs text-gray-800 mt-2'>Sent: {dateConversion(message.timestamp)}</h6>
                             </div>
                         )
                     })}

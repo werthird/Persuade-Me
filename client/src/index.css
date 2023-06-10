@@ -83,15 +83,19 @@ Highscore Css Below here */
 
 }
 .teamA{
-align-items:start;
-max-width:60%
+  align-items:start;
+  min-width:60%;
+  max-width:60%;
 }
 .teamB{
   align-self:end;
-max-width:60%
+  max-width:60%;
+  min-width:60%;
 }
-.admin{
+.host{
   align-self:center;
+  min-width:45%;
+  max-width:45%;
 }
 .max-h-vw{
   max-height: 600px;

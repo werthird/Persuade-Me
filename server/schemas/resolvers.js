@@ -60,6 +60,24 @@ const resolvers = {
       const lobby = await Lobby.create({ host, topic })
       return
     },
+    addStaff: async(parent, {lobby, role, user}) => {
+      const roleDict = {
+        teamA: {teamA: user},
+        teamB: {teamB: user}
+      }
+      console.log(lobby, role, user, roleDict[role])
+      try {
+      const newLobby = await Lobby.findOneAndUpdate(
+        {_id: lobby},
+        {$addToSet: roleDict[role]},
+        {new : true}
+        );
+        console.log(newLobby)
+        return newLobby;
+      } catch(err) {
+        console.log(err)
+      }
+    },
     //SEND MESSAGE MUTATION
     sendMessage: async (parent, { lobby, author, role, contents, sources }) => {
       sources = !sources ? sources : [];

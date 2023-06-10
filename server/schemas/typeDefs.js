@@ -53,6 +53,7 @@ const typeDefs = gql`
 
     sendMessage(lobby: String!, author: String!, role: String!, contents: String!, sources: [String]): Message
     addLobby(host: ID!, topic: String!): Auth
+    addStaff(lobby: String!, role: String!, user: String!): Lobby
   }
 `;
 
