@@ -18,14 +18,11 @@ const dateConversion = (timestamp) => {
 const LobbyList = () => {
 
     const profileID = Auth.getProfile().data.name
-    console.log(profileID)
 
     let { error, loading, data } = useQuery(QUERY_LOBBIES);
-    console.log(data);
     if (!data) {
         return <h3>No active debates.</h3>;
     }
-    console.log(data.lobbies);
 
     return (
         <div id="Lobby" className="w-full">
@@ -43,7 +40,7 @@ const LobbyList = () => {
                                     <div className="opacity-80 absolute inset-0 rounded-2xl shadow-lg shadow-black"></div>    
                                     <p className='h-1/4 text-center p-2 bg-black text-white text-xl font-medium rounded-t-2xl shadow-inner shadow-gray-400'>{lobby.topic}</p>
                                     <div className="flex flex-col place-content-end h-3/4 text-white p-2 pb-5">
-                                        <p className="flex justify-between mx-5"><b>Created By:</b> <span className="capitalize">{profileID}</span></p>
+                                        <p className="flex justify-between mx-5"><b>Created By:</b> <span className="capitalize">{lobby.host}</span></p>
                                         <p className="flex justify-between mx-5"><b>Created At:</b> <span className="capitalize">{dateConversion(lobby.createdAt)}</span></p>
                                     </div>
                                 </Link>
