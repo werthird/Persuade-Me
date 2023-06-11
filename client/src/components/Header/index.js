@@ -40,10 +40,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link className="m-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse m-2" to="/login">
+              <Link className="m-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/login">
                 Login
               </Link>
-              <Link className="m-4 m-2 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/signup">
+              <Link className="m-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/signup">
                 Signup
               </Link>
             </>
