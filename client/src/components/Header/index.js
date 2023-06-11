@@ -18,8 +18,8 @@ const Header = () => {
     <header className="bg-gradient-to-br from-gray-200 to-slate-700">
       <div className="flex justify-between items-center px-5 py-1">
        
-        <div className='flex'>
-          <img className='' src={logoIcon} alt="logo-icon" width={100}/>
+        <div className=''>
+          <img className='flex' src={logoIcon} alt="logo-icon" width={100}/>
           <img className='m-auto' src={logoName} alt="logo-name" width={250}/>
         </div>
         <nav className=''>

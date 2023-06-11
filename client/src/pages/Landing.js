@@ -52,7 +52,7 @@ const Landing = () => {
               <p className='text-center pt-8 font-semibold font-lora'> Users who create a debate lobby are set as admin by default.</p>
             </div>
           </div>
-          <h4 className='mt-2 text-center font-poppins absolute bottom-10'>&copy; {new Date().getFullYear()} - Persuade Me</h4>
+          <h4 className='mt-6 text-center font-poppins'>&copy; {new Date().getFullYear()} - Persuade Me</h4>
         </div>
     </main>
   );
