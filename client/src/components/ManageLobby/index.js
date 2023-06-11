@@ -8,6 +8,7 @@ const ManageLobby = ({socket, lobby, setStaff}) => {
     const lobbyId = lobby._id
     const [addA, setAddA] = useState('');
     const [addB, setAddB] = useState('');
+    const [display, setDisplay] = useState('');
     const [addStaff, { error }] = useMutation(ADD_STAFF)
 
     const handleStaffSubmit = async (event) => {
@@ -33,44 +34,60 @@ const ManageLobby = ({socket, lobby, setStaff}) => {
             return {teamA: newTeam.teamA, teamB: newTeam.teamB, admin: newTeam.admin}
         } catch (err) {
             console.error(err)
-        }
+        };
+    };
 
-    }
+    const displayToggle = () => {
+        setDisplay((prevDisplay) => (prevDisplay === 'none' ? 'flex' : 'none'));
+    };
 
     return (
-        <div className="flex" id="managelobby">
-            <div id="manageStaff">
+        <div>
+            <div className="flex flex-col absolute left-10 bg-black text-white px-3 pb-3 pt-1 rounded-b-3xl shadow-md shadow-black ease-in" 
+                onClick={displayToggle}
+                style={{ cursor: 'pointer' }}>
+                <button className=''>Lobby Controls</button>
+            </div>
+            <div className="flex flex-col absolute left-10 bg-black text-white px-3 pb-3 pt-1 rounded-b-3xl w-96 ease-in" style={{ display }} id="managelobby">
+                <button className='self-end text-sm underline' onClick={displayToggle}>Close</button>
+                <h2 className='text-xl font-medium pb-2'>Lobby Control</h2>
                 <form id="teamA-form" className="flex-col items-center"
                     onSubmit={handleStaffSubmit}>
-                    <div>Team A:</div>
-                    <input placeholder="username"
-                        name="teamA"
-                        type="staff"
-                        onChange={(event) => setAddA(event.target.value)} />
-                    <button
-                        className="mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-12 hover:animate-pulse"
-                        style={{ cursor: 'pointer' }}
-                        type="submit"
-                        id="teamA"
-                    >
-                        Submit
-                    </button>
+                    <p>Team A:</p>
+                    <div className='flex justify-between h-fit my-2'>
+                        <input className='p-2 placeholder-black w-2/3 text-black'
+                            placeholder="Username..."
+                            name="teamA"
+                            type="staff"
+                            onChange={(event) => setAddA(event.target.value)} />
+                        <button
+                            className="bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 border-none rounded-md hover:animate-pulse"
+                            style={{ cursor: 'pointer' }}
+                            type="submit"
+                            id="teamA"
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </form>
                 <form id="teamB-form" className="flex-col items-center"
                     onSubmit={handleStaffSubmit}>
-                    <div>Team B:</div>
-                    <input placeholder="username"
-                        name="teamB"
-                        type="staff"
-                        onChange={(event) => setAddB(event.target.value)} />
-                    <button
-                        className="mb-4 bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 mt-4 border-none rounded-md ml-12 hover:animate-pulse"
-                        style={{ cursor: 'pointer' }}
-                        type="submit"
-                        id="teamB"
-                    >
-                        Submit
-                    </button>
+                    <p>Team B:</p>
+                    <div className='flex justify-between h-fit my-2'>
+                        <input className='p-2 placeholder-black w-2/3 text-black'
+                            placeholder="username"
+                            name="teamB"
+                            type="staff"
+                            onChange={(event) => setAddB(event.target.value)} />
+                        <button
+                            className="bg-gradient-to-br from-zinc-600 text- to-cyan-300 px-4 py-2 border-none rounded-md hover:animate-pulse"
+                            style={{ cursor: 'pointer' }}
+                            type="submit"
+                            id="teamB"
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
