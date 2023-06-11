@@ -29,3 +29,25 @@ Lobby page
 
 
 
+{Auth.loggedIn() ? (
+            <div id="buttonRow">
+              <Link className="m-6 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/me">
+                Profile
+              </Link>
+              <Link className="m-6 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/home">
+                Home
+              </Link>
+              <button className="m-6 bg-gradient-to-r from-cyan-300 text- to-zinc-600 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" onClick={logout}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <>
+              <Link className="m-6 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/login">
+                Login
+              </Link>
+              <Link className="m-6 bg-gradient-to-br from-cyan-300 text- to-zinc-600 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/signup">
+                Signup
+              </Link>
+            </>
+          )}

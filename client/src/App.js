@@ -10,8 +10,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation  } from 'react-rout
 import Landing from './pages/Landing';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
 import Debate from './pages/Debate';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -63,7 +61,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="flex-column justify-flex-start min-100-vh h-screen">
           <HomeHeaderWrapper />
           <div className="flex flex-col justify-center">
             <Routes>
@@ -74,14 +72,6 @@ function App() {
               <Route 
                 path="/home"
                 element={<Home />}
-              />
-              <Route
-                path="/login"
-                element={<Login />}
-              />
-              <Route
-                path="/signup"
-                element={<Signup />}
               />
               <Route
                 path="/me"
