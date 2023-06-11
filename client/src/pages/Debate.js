@@ -30,6 +30,8 @@ const Debate = () => {
     joinLobby();
     //author info
     const author = Auth.getProfile().data.name;
+    console.log(author);
+    console.log(lobby);
     const isHost = () => { return author === lobby.host }
     
     //lobby info to render page/components
@@ -87,8 +89,7 @@ const Debate = () => {
 
     return (
         <div id="main" className='flex'>
-            <div className='viewers w-1/5 border-2 border-slate-300 text-center pt-4' id="viewer-container">
-                <div className='font-semibold'>Viewers:</div>
+            <div className='viewers w-1/5 text-center' id="viewer-container">
                 {isHost() ? (
                     <ManageLobby
                         socket={socket}
@@ -96,6 +97,7 @@ const Debate = () => {
                         setStaff={setStaff}
                     />
                 ) : (<p>B</p>)}
+                <div className='font-semibold pt-4'>Viewers:</div>
             </div>
             <div className='w-4/5' id="content-container">
                 <div className='bg-gradient-to-br from-black to-sky-400 pb-2'>

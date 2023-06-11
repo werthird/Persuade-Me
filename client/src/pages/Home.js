@@ -28,7 +28,6 @@ const Home = () => {
         </div>
         <div>
           {Auth.loggedIn() ? (
-
             <>
             </>
           ) : (
