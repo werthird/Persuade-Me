@@ -2,6 +2,7 @@ import LobbyForm from '../components/LobbyForm';
 import LobbyList from '../components/LobbyList';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import Footer from '../components/Footer';
 
 import Auth from '../utils/auth';
 import logo from '../images/PM-logo-icon.png';
@@ -46,11 +47,13 @@ const Landing = () => {
   }
 
   return (
+    <>
     <main className='flex flex-row bg-gradient-to-br from-gray-200 to-slate-700 justify-end items-end w-full h-screen border-2 border-black'>
       <div id='left-stack' className="relative">
         <img src={imageL} />
         <img src={logos[0]} className="smallLeft absolute top-0 right-0" />
       </div>
+      <div className="flex flex-col items-center justify-items-around">
       <div className="centercontainer h-screen text-dark py-3 flex flex-col  items-center justify-between self-center">
         {stuff[pageType]()}
         {Auth.loggedIn() ? (
@@ -79,10 +82,8 @@ const Landing = () => {
             </div>
           </div>
         )}
-        </div>
-      <div id='left-stack' className="relative">
-        <img src={imageR} />
-        <img src={logos[1]} className="smallRight absolute top-0 right-0" />  <div class="max-w-xl rounded-xl overflow-hidden mt-32 shadow-lg shadow-black">
+      </div>
+      <div class="max-w-xl rounded-xl overflow-hidden mt-32 shadow-lg shadow-black">
             <div class="px-12 py-4 bg-slate-300">
               <div class="font-bold text-4xl mb-2 text-center font-poppins">Persuade Me</div>
               <p class="text-gray-700 text-base text-center font-semibold italic">
@@ -92,9 +93,14 @@ const Landing = () => {
               <p className='text-center pt-8 font-semibold font-lora'> Users who create a debate lobby are set as admin by default.</p>
             </div>
           </div>
-          <h4 className='mt-6 text-center font-poppins'>&copy; {new Date().getFullYear()} - Persuade Me</h4>
-        </div>
+          </div>
+      <div id='right-stack' className="relative">
+        <img src={imageR} />
+        <img src={logos[1]} className="smallRight absolute top-0 right-0" />
+      </div>
     </main>
+    <Footer />
+    </>
   );
 };
 
