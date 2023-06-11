@@ -18,7 +18,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4 className='mt-3 text-center ml-10 font-poppins'>&copy; {new Date().getFullYear()} - Persuade Me</h4>
+        <h4 className='mt-3 text-center font-poppins'>&copy; {new Date().getFullYear()} - Persuade Me</h4>
       </div>
     </footer>
   );

@@ -79,11 +79,21 @@ const Landing = () => {
             </div>
           </div>
         )}
-      </div>
+        </div>
       <div id='left-stack' className="relative">
         <img src={imageR} />
-        <img src={logos[1]} className="smallRight absolute top-0 right-0" />
-      </div>
+        <img src={logos[1]} className="smallRight absolute top-0 right-0" />  <div class="max-w-xl rounded-xl overflow-hidden mt-32 shadow-lg shadow-black">
+            <div class="px-12 py-4 bg-slate-300">
+              <div class="font-bold text-4xl mb-2 text-center font-poppins">Persuade Me</div>
+              <p class="text-gray-700 text-base text-center font-semibold italic">
+                A live chat debate platform. 
+              </p>
+              <p className='text-center pt-8 font-semibold font-lora'>Make a profile to create and join a debate lobby. Invite other users and have a friendly dabate! Make sure to keep the debates clean and orderly. Use the above signup button to create an account.</p>
+              <p className='text-center pt-8 font-semibold font-lora'> Users who create a debate lobby are set as admin by default.</p>
+            </div>
+          </div>
+          <h4 className='mt-2 text-center font-poppins absolute bottom-10'>&copy; {new Date().getFullYear()} - Persuade Me</h4>
+        </div>
     </main>
   );
 };
