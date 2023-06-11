@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../../utils/mutations';
@@ -7,7 +7,6 @@ import { ADD_PROFILE } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -51,7 +50,7 @@ const Signup = () => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                {navigate("/home")}
+                <Link to="/home">back to the homepage.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
