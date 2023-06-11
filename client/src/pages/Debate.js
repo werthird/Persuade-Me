@@ -136,7 +136,7 @@ const Debate = () => {
                             onClick={timerEvent}>Stop</button>
                     </div>
                 </div>
-                <div id="info-container">
+                <div id="info-container" class="flex-col flex items-center rounded-xl overflow-hidden mt-4 mr-4 bg-slate-400 shadow-lg shadow-black">
                     <h2 className='pl-4 pt-4 text-center'>Hello, you are in lobby ID: {lobbyId}</h2>
                     <h2 className='pl-4 text-center'>Lobby topic: {lobby.topic}</h2>
                     <h2 className='pl-4 text-center'>Lobby host: {lobby.host}</h2>
