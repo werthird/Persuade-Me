@@ -9,6 +9,12 @@ const db = require('./config/connection');
 const cors = require('cors');
 
 
+var allClients = [];
+var allClientObj = {}
+var openRooms = {
+
+}
+
 const app = express();
 const httpServer = createServer(app);
 app.use(cors());
@@ -27,13 +33,24 @@ const PORT = process.env.PORT || 3001;
 // SOCKET.IO 
 
 // Make connection to client
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   console.log(`User connected: ${socket.id}`);
-
   // JOIN LOBBY
-  socket.on('join_lobby', (data) => {
-    socket.join(data);
-    console.log(`User with ID: ${socket.id} joined lobby: ${data}`);
+  socket.on('join_lobby', async (data) => {
+    const presentCheck = () => {
+      const thisUser = allClients.filter(user => user.name === data.user.name)
+      if (thisUser === []) {
+        allClients.push(data)
+        console.log(allClients)
+      }
+    }
+    presentCheck()
+    socket.join(data.lobby);
+    await socket.to(data.lobby).emit('user_join', data.user)
+    const lobbyViewers = allClients.filter(user => user.lobby === data.lobby)
+    console.log(allClients)
+    await socket.to(socket.id).emit('viewers', '')
+    console.log(`${data.user.name} with socketID: ${socket.id} joined lobby: ${data.lobby}`);
   });
 
   // Listen to any client requests
@@ -54,6 +71,10 @@ io.on('connection', (socket) => {
     socket.to(data.lobby).emit('staff_event', data)
     console.log(data)
   });
+
+  socket.on('disconnect', () => {
+    console.log(`${socket.id} disconnected`)
+  })
 });
 
 

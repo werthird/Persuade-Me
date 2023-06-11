@@ -31,13 +31,11 @@ const MessageBox = ({ socket, lobby, author, chatData}) => {
         };
         try {
             const newMessage = await addMessage({ variables: data });
-            console.log(newMessage)
             await socket.emit('client_message', newMessage.data.sendMessage);
             setMessageList((list) => [...list, newMessage.data.sendMessage]);
             try {
                 lastElement.scrollIntoView({ behavior: 'smooth' })
             } catch {
-                console.log('nah bro')
             }
         } catch (err) {
             console.error(err);
