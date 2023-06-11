@@ -49,13 +49,13 @@ const Landing = () => {
 
   return (
     <>
-    <main className='flex flex-row bg-gradient-to-br from-gray-200 to-slate-700 justify-between items-end w-full h-screen border-2 border-black'>
+    <main className='flex flex-row bg-gradient-to-br from-gray-200 to-slate-700 justify-between items-end w-full h-screen'>
       <div id='left-stack' className="relative">
         <img src={imageL} />
         <img src={logos[0]} className="smallLeft absolute top-0 right-0" />
       </div>
       <div className="flex flex-col items-center justify-items-around">
-      <div className="centercontainer h-screen text-dark py-3 flex flex-col  items-center justify-between self-center">
+      <div className="centercontainer shadow-xl shadow-indigo-400 h-screen text-dark py-3 flex flex-col items-center justify-between self-center border-r border-black mb-64 overflow-hidden">
         {stuff[pageType]()}
         <img src={logoName}/>
         {Auth.loggedIn() ? (
@@ -73,19 +73,19 @@ const Landing = () => {
         ) : (
           <div id="buttonRow" className="flex flex-row gap-x-7">
             <div>
-              <button id="login" className="landingbtn bg-gradient-to-br from-zinc-600 text-black to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" onClick={handlePageClick}>
+              <button id="login" className="landingbtn bg-gradient-to-br from-zinc-600 text-black to-cyan-300  px-4 py-2 border-none rounded-md hover:animate-pulse" onClick={handlePageClick}>
                 Login
               </button>
             </div>
             <div>
-              <button id="signup" className="landingbtn bg-gradient-to-br from-cyan-300 text-black to-zinc-600 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" onClick={handlePageClick}>
+              <button id="signup" className="landingbtn bg-gradient-to-br from-cyan-300 text-black to-zinc-600  px-4 py-2 border-none rounded-md hover:animate-pulse" onClick={handlePageClick}>
                 Signup
               </button>
             </div>
           </div>
         )}
       </div>
-      <div class="max-w-xl rounded-xl overflow-hidden mt-32 shadow-lg shadow-black">
+      <div class="max-w-xl rounded-xl overflow-hidden mt-36 mb-32 shadow-lg shadow-black">
             <div class="px-12 py-4 bg-slate-300">
               <div class="font-bold text-4xl mb-2 text-center font-poppins">Persuade Me</div>
               <p class="text-gray-700 text-base text-center font-semibold italic">
