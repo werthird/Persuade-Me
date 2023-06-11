@@ -15,19 +15,28 @@ const Debate = () => {
     const check = false;
     const [lobbyInfo, setLobbyInfo] = useState({lobby})
     console.log(Auth.getProfile())
+    const [viewers, setViewers] = useState([]);
 
-    const [viewers, setViewers] = useState({});
+    
     const socket = io('http://localhost:3001');
     const joinLobby = () => {
         const data = {
             user:Auth.getProfile().data,
-            lobby:lobbyInfo._id
+            lobby:lobbyId
         }
-
+        console.log(data)
         socket.emit('join_lobby', data)
+        socket.on('viewers', setViewers)
         console.log(`user joined ${lobby._id}`)
+        return () => {
+            socket.off('viewers', setViewers)
+        }
     };
     joinLobby();
+    const receiveViewerUpdate = (data) => {
+        console.log(data)
+    }
+    socket.on('user_join', receiveViewerUpdate)
     //author info
     const author = Auth.getProfile().data.name;
     console.log(author);
@@ -97,7 +106,12 @@ const Debate = () => {
                         setStaff={setStaff}
                     />
                 ) : (<p>B</p>)}
-                <div className='font-semibold pt-4'>Viewers:</div>
+                <div className='font-semibold'>Viewers:</div>
+                <div>
+                {viewers && viewers.map((viewer) => {
+                    return (<p>{viewer}</p>)
+                })}
+                </div>
             </div>
             <div className='w-4/5' id="content-container">
                 <div className='bg-gradient-to-br from-black to-sky-400 pb-2'>
