@@ -15,9 +15,9 @@ const Landing = () => {
 
 
   return (
-    <main className='h-screen border-2 border-black'>
-      <div className=" text-dark py-3 flex flex-col bg-gradient-to-br from-gray-200 to-slate-700 items-center">
-        <img className='shadow-xl shadow-indigo-300' src={logo} alt="logo" width={800}/>
+    <main className='flex justify-center items-center w-full h-full border-2 border-black'>
+      <div className="w-full h-full text-dark py-3 flex flex-col bg-gradient-to-br from-gray-200 to-slate-700 items-center">
+        <img className='shadow-xl shadow-indigo-300' src={logo} alt="logo" width={800} />
         <div className='absolute bottom-16'>
           {Auth.loggedIn() ? (
             <>
