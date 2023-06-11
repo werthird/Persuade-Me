@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 
 import Auth from '../utils/auth';
 import logo from '../images/PM-logo-icon.png';
+import logoName from '../images/PM-logo-name.png';
 import imageL from '../images/leftImage.png';
 import imageR from '../images/rightImage.png';
 import { logoPack } from '../utils/logos'
@@ -48,7 +49,7 @@ const Landing = () => {
 
   return (
     <>
-    <main className='flex flex-row bg-gradient-to-br from-gray-200 to-slate-700 justify-end items-end w-full h-screen border-2 border-black'>
+    <main className='flex flex-row bg-gradient-to-br from-gray-200 to-slate-700 justify-between items-end w-full h-screen border-2 border-black'>
       <div id='left-stack' className="relative">
         <img src={imageL} />
         <img src={logos[0]} className="smallLeft absolute top-0 right-0" />
@@ -56,6 +57,7 @@ const Landing = () => {
       <div className="flex flex-col items-center justify-items-around">
       <div className="centercontainer h-screen text-dark py-3 flex flex-col  items-center justify-between self-center">
         {stuff[pageType]()}
+        <img src={logoName}/>
         {Auth.loggedIn() ? (
           <div id="buttonRow">
             <Link className="m-6 bg-gradient-to-br from-zinc-600 text- to-cyan-300 text-black px-4 py-2 border-none rounded-md hover:animate-pulse" to="/me">
