@@ -53,6 +53,8 @@ const Login = (props) => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
+                <div class="max-w-xl rounded-xl overflow-hidden shadow-lg shadow-black">
+                <div class="px-12 py-4 bg-slate-400">
                 <label className="block">
                 <span className="block text-sm font-medium text-slate-700 text-center mb-2">Username:</span>
                 <input
@@ -92,7 +94,8 @@ const Login = (props) => {
                   Submit
                 </button>
                 </div>
-                
+                </div>
+                </div>
               </form>
             )}
 
