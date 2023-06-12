@@ -1,4 +1,3 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Persuade-Me
 ## Description
 A live debate platform that allows two users to debate a subject in front of an audience who have the ability to vote on debators.
@@ -29,4 +28,4 @@ The people who worked on Persuade Me:
 * [tylervanderstaay](https://github.com/tylervanderstaay)
 * [CoolJH2K](https://github.com/CoolJH2K)
 ## License
-This uses the MIT License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
