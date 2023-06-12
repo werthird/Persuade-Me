@@ -2,6 +2,7 @@
 # Persuade-Me
 ## Description
 A live debate platform that allows two users to debate a subject in front of an audience who have the ability to vote on debators.
+
 ![Screenshot 2023-06-12 103051](https://github.com/werthird/Persuade-Me/assets/127864614/c436cc20-1d82-414d-a8da-a63470be2035)
 
 ### Why did we do this?
