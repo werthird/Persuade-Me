@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { SEND_MESSAGE } from '../../utils/mutations';
 
-const MessageBox = ({ socket, lobby, author, chatData}) => {
-    console.log(chatData)
+const MessageBox = ({ socket, lobby, author, staff, chatData }) => {
+    console.log(lobby)
     const isHost = () => { return author === lobby.host }
     const lobbyId = lobby._id;
+    console.log(lobby)
     let thisLobby = lobby
-    let staff = [...thisLobby.teamA, ...thisLobby.teamB, ...thisLobby.admin];
-    
-    
-    const role = thisLobby.teamA.includes(author)
+    // let staff = [...thisLobby.teamA, ...thisLobby.teamB, ...thisLobby.admin];
+
+    const role = staff.teamA.includes(author)
         ? 'teamA'
-        : thisLobby.teamB.includes(author)
+        : staff.teamB.includes(author)
             ? 'teamB'
             : isHost() ? 'host' : 'viewer';
     const [message, setMessage] = useState('');
@@ -29,6 +29,7 @@ const MessageBox = ({ socket, lobby, author, chatData}) => {
             role: role,
             contents: currentMessage,
         };
+        console.log(data);
         try {
             const newMessage = await addMessage({ variables: data });
             await socket.emit('client_message', newMessage.data.sendMessage);
@@ -37,6 +38,7 @@ const MessageBox = ({ socket, lobby, author, chatData}) => {
                 lastElement.scrollIntoView({ behavior: 'smooth' })
             } catch {
             }
+            console.log(data);
         } catch (err) {
             console.error(err);
         }
@@ -92,6 +94,7 @@ const MessageBox = ({ socket, lobby, author, chatData}) => {
                         )
                     })}
                     {messageList && messageList.map((message) => {
+                        console.log(message)
                         return (
                             <div className={messageRole[message.role]} key={message._id}>
                                 <h4 className='text-center text-white font-lora text-xl font-semibold'>{message.author}</h4>
