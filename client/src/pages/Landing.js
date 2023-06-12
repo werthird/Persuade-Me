@@ -49,7 +49,7 @@ const Landing = () => {
 
   return (
     <>
-    <main className='flex flex-row bg-gradient-to-br from-gray-200 to-slate-700 justify-between items-end w-full'>
+    <main className='flex flex-row bg-gradient-to-br from-gray-200 to-slate-700 justify-between items-end w-full h-screen'>
       <div id='left-stack' className="relative">
         <img src={imageL} />
         <img src={logos[0]} className="smallLeft absolute top-0 right-0" />

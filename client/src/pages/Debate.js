@@ -155,6 +155,7 @@ const Debate = () => {
                         socket={socket}
                         lobby={lobby}
                         author={author}
+                        staff={staff}
                         chatData={chatData.data}
                     />
                 </div>

@@ -5,7 +5,8 @@ import { ADD_STAFF } from '../../utils/mutations';
 
 
 const ManageLobby = ({socket, lobby, setStaff}) => {
-    const lobbyId = lobby._id
+    console.log(lobby)
+    const lobbyId = lobby.lobby._id
     const [addA, setAddA] = useState('');
     const [addB, setAddB] = useState('');
     const [display, setDisplay] = useState('none');
@@ -16,10 +17,10 @@ const ManageLobby = ({socket, lobby, setStaff}) => {
             teamA: addA,
             teamB: addB
         }
+        console.log(getObject)
         event.preventDefault();
         const role = event.target[1].id
         const user = getObject[role]
-        console.log(lobbyId, role, user)
         try {
             console.log(lobbyId, role, user)
             const newLobby = await addStaff(
@@ -29,6 +30,7 @@ const ManageLobby = ({socket, lobby, setStaff}) => {
             const newTeam = newLobby.data.addStaff
             const newStaff = {teamA: newTeam.teamA, teamB: newTeam.teamB, admin: newTeam.admin}
             setStaff(newStaff)
+            console.log(newStaff)
             const data = {lobby: lobbyId, update: newStaff}
             socket.emit('staff_event', data)
             return {teamA: newTeam.teamA, teamB: newTeam.teamB, admin: newTeam.admin}
