@@ -83,8 +83,8 @@ const MessageBox = ({ socket, lobby, author, chatData}) => {
                     {chatData && chatData.messages.map((message) => {
                         return (
                             <div className={messageRole[message.role]} key={message._id}>
-                                <h4 className='text-center text-black font-lora text-xl font-semibold'>{message.author}</h4>
-                                <p className={'text-center text-white'}>{message.contents}</p>
+                                <h4 className='text-center text-white text-lg font-semibold'>{message.author}</h4>
+                                <p className={'text-center text-black text-xl font-medium'}>{message.contents}</p>
                                 <h6 className='text-center text-xs text-gray-800 mt-2'>Sent: {dateConversion(message.timestamp)}</h6>
 
 
@@ -94,8 +94,8 @@ const MessageBox = ({ socket, lobby, author, chatData}) => {
                     {messageList && messageList.map((message) => {
                         return (
                             <div className={messageRole[message.role]} key={message._id}>
-                                <h4 className='text-center text-black font-lora text-xl font-semibold'>{message.author}</h4>
-                                <p className={'text-center text-white'}>{message.contents}</p>
+                                <h4 className='text-center text-white font-lora text-xl font-semibold'>{message.author}</h4>
+                                <p className={'text-center text-black text-xl font-medium'}>{message.contents}</p>
                                 <h6 className='text-center text-xs text-gray-800 mt-2'>Sent: {dateConversion(message.timestamp)}</h6>
                             </div>
                         )

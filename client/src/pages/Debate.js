@@ -146,9 +146,9 @@ const Debate = () => {
                     </div>
                 </div>
                 <div id="info-container" class="flex-col flex items-center rounded-xl overflow-hidden mt-4 mr-4 bg-slate-400 shadow-lg shadow-black">
-                    <h2 className='pl-4 pt-4 text-center'>Hello, you are in lobby ID: {lobbyId}</h2>
-                    <h2 className='pl-4 text-center'>Lobby topic: {lobby.topic}</h2>
-                    <h2 className='pl-4 text-center'>Lobby host: {lobby.host}</h2>
+                    <h2 className='text-center'>Lobby topic:</h2>
+                    <h2 className='px-2 text-xl font-medium'>{lobby.topic}</h2>
+                    <h2 className='text-center'>Lobby host: {lobby.host}</h2>
                 </div>
                 <div className="content">
                     <MessageBox
