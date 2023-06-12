@@ -1,6 +1,8 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Persuade-Me
 ## Description
 A live debate platform that allows two users to debate a subject in front of an audience who have the ability to vote on debators.
+<img style="text-align: center" src="../Persuade-Me/client/public/Screenshot%202023-06-12%20103051.png" alt="PersuadeMe" style="width:100%;height:100%"/>
 ### Why did we do this?
 We did this because we were poor and needed money...
 
