@@ -8,7 +8,7 @@ const ManageLobby = ({socket, lobby, setStaff}) => {
     const lobbyId = lobby._id
     const [addA, setAddA] = useState('');
     const [addB, setAddB] = useState('');
-    const [display, setDisplay] = useState('');
+    const [display, setDisplay] = useState('none');
     const [addStaff, { error }] = useMutation(ADD_STAFF)
 
     const handleStaffSubmit = async (event) => {
