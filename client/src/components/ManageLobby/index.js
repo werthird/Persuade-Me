@@ -38,20 +38,22 @@ const ManageLobby = ({socket, lobby, setStaff}) => {
     };
 
     const displayToggle = () => {
-        setDisplay((prevDisplay) => (prevDisplay === 'none' ? 'flex' : 'none'));
+        setDisplay((prevDisplay) => (prevDisplay === 'flex' ? 'none' : 'flex'));
     };
 
     return (
         <div>
-            <div className="flex flex-col absolute left-10 bg-black text-white px-3 pb-3 pt-1 rounded-b-3xl shadow-md shadow-black ease-in" 
+            <div className="flex flex-col absolute left-10 bg-slate-900 text-white px-3 pb-3 pt-1 rounded-b-3xl shadow-md shadow-black hover:z-10 hover:text-xl hover:font-medium" 
                 onClick={displayToggle}
                 style={{ cursor: 'pointer' }}>
                 <button className=''>Lobby Controls</button>
             </div>
-            <div className="flex flex-col absolute left-10 bg-black text-white px-3 pb-3 pt-1 rounded-b-3xl w-96 ease-in" style={{ display }} id="managelobby">
+            <div className="flex flex-col absolute left-10 z-10 bg-slate-900 text-white px-3 pb-3 pt-1 rounded-b-3xl w-96 shadow-md shadow-black" 
+                style={{ display }} 
+                id="managelobby">
                 <button className='self-end text-sm underline' onClick={displayToggle}>Close</button>
-                <h2 className='text-xl font-medium pb-2'>Lobby Control</h2>
-                <form id="teamA-form" className="flex-col items-center"
+                <h2 className='text-2xl font-medium pb-2'>Lobby Control</h2>
+                <form id="teamA-form" className="flex-col items-center mt-5"
                     onSubmit={handleStaffSubmit}>
                     <p>Team A:</p>
                     <div className='flex justify-between h-fit my-2'>

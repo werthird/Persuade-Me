@@ -4,13 +4,15 @@ import io from 'socket.io-client';
 import { Navigate, useParams, useLocation } from 'react-router-dom';
 import { QUERY_MESSAGES } from '../utils/queries';
 import MessageBox from '../components/MessageBox'
-import ManageLobby from '../components/ManageLobby'
+import ManageLobby from '../components/ManageLobby';
+import LobbyRules from '../components/LobbyRules'
 
 import Auth from '../utils/auth';
 
 
 const Debate = () => {
     const lobby = useLocation().state.lobby;
+    console.log(lobby)
     const lobbyId = lobby._id
     const check = false;
     const [lobbyInfo, setLobbyInfo] = useState({lobby})
@@ -100,11 +102,18 @@ const Debate = () => {
         <div id="main" className='flex'>
             <div className='viewers w-1/5 text-center' id="viewer-container">
                 {isHost() ? (
-                    <ManageLobby
-                        socket={socket}
-                        lobby={lobbyInfo}
-                        setStaff={setStaff}
-                    />
+                    <>
+                        <ManageLobby
+                            socket={socket}
+                            lobby={lobbyInfo}
+                            setStaff={setStaff}
+                        />
+                        <LobbyRules 
+                            socket={socket}
+                            lobby={lobbyInfo}
+                            setStaff={setStaff}
+                        />
+                    </>
                 ) : (<p>B</p>)}
                 <div className='font-semibold'>Viewers:</div>
                 <div>
