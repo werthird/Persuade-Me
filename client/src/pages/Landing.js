@@ -55,7 +55,7 @@ const Landing = () => {
         <img src={logos[0]} className="smallLeft absolute top-0 right-0" />
       </div>
       <div className="flex flex-col items-center justify-items-around">
-      <div className="centercontainer shadow-xl shadow-indigo-400 h-screen text-dark py-3 flex flex-col items-center justify-between self-center border-r border-black mb-64 overflow-hidden">
+      <div className="centercontainer shadow-xl shadow-indigo-400 h-screen text-dark py-3 flex flex-col items-center justify-between self-center border-r border-black mb-32 overflow-hidden">
         {stuff[pageType]()}
         <img src={logoName}/>
         {Auth.loggedIn() ? (
