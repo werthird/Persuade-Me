@@ -17,7 +17,6 @@ And as for having the option to remain neutral in a debate, we included that opt
 We learned what WebSocket is and how we can use it to make our app instead of the usual HTTP requests.
 ## Link
 TBD (To Be Deployed)
-## Screenshot
 ## Installation
 N/A
 ## Usage
